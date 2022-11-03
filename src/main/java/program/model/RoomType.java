@@ -1,7 +1,11 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Typ miestnosti
@@ -9,6 +13,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "RoomType")
+@Getter
+@Setter
 public class RoomType {
 
     @Id
@@ -23,5 +29,5 @@ public class RoomType {
     private String capacity;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
-    private List<Room> rooms;
+    private Set<Room> rooms = new HashSet<>();
 }

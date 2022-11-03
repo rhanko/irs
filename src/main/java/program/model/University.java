@@ -1,13 +1,19 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Univerzita
  */
 @Entity
 @Table(name = "University")
+@Getter
+@Setter
 public class University {
 
     /**
@@ -28,5 +34,5 @@ public class University {
      * Fakulty danej univerzity
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "university")
-    private List<Faculty> faculties;
+    private Set<Faculty> faculties = new HashSet<>();
 }

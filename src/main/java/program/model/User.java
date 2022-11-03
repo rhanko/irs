@@ -1,5 +1,8 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "User")
+@Getter
+@Setter
 public class User {
 
     /**

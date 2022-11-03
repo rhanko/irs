@@ -1,10 +1,16 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Block")
+@Getter
+@Setter
 public class Block {
 
     /**
@@ -39,5 +45,5 @@ public class Block {
      * Izby daného bloku
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "block")
-    private List<Room> rooms;
+    private Set<Room> rooms = new HashSet<>();
 }

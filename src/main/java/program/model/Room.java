@@ -1,10 +1,16 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Room")
+@Getter
+@Setter
 public class Room {
 
     @Id
@@ -30,5 +36,5 @@ public class Room {
     private RoomType roomType;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
-    private List<RoomEquipment> roomEquipment;
+    private Set<RoomEquipment> roomEquipment = new HashSet<>();
 }

@@ -1,9 +1,14 @@
 package program.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Room_Equipment")
+@Getter
+@Setter
 public class RoomEquipment {
 //TODO: Prerobiť aby primarne kluce boli room a equipment nie id
     @Id
