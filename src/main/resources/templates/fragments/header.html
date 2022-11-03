@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
+
+  <script th:src="@{scripts/burgermenu.js}"></script>
+
+</head>
+<body>
+<header th:fragment="header">
+  <!--Menu-->
+  <div class="menu">
+    <!--Burgermenu-->
+    <div class="iconburger" onclick="burgermenuFunction(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+
+    <!--Menubar-->
+    <div id="menubarlinks">
+      <ul class="menubar">
+        <li class="menufield">
+          <a class="menulink" href="/" title="domov">Oznamy</a>
+        </li>
+
+        <li class="menufield">
+          <a class="menulink" href="/poplatky" title="poplatky">Poplatky</a>
+        </li>
+
+        <li class="menufield">
+          <a class="menulink" href="/contacts" title="kontakt">Kontakty</a>
+        </li>
+
+        <li class="menufield" id="reservefield">
+          <a class="menulink" href="#" title="rezervácia">Rezervácia</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--Header image-->
+  <!--TODO: striedanie obrazkov a ich prepinanie-->
+  <div class="headerimagebar">
+    <img class="headerimage" src="../static/pictures/headerpicture.jpg" th:src="@{/pictures/headerpicture.jpg}" alt="error" loading="lazy">
+  </div>
+</header>
+</body>
+</html>
