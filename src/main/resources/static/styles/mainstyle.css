@@ -39,7 +39,7 @@ footer {
     display: none;
 }
 
-.menufield:last-child {
+.menufield:nth-last-child(2) {
     margin-right: 0;
 }
 
@@ -143,6 +143,7 @@ input:focus {
 
 .searchbar,
 .menufield:last-child,
+.menufield:nth-last-child(2),
 .articledate,
 .articleauthor,
 .copyright {
@@ -197,7 +198,7 @@ footer {
     min-width: 50%;
 }
 
-@media only screen and (max-width: 549px) {
+@media only screen and (max-width: 599px) {
     .menu {
         position: relative;
         overflow: hidden;
@@ -247,6 +248,7 @@ footer {
     }
 
     .menufield,
+    .menufield:nth-last-child(2),
     .menufield:last-child{
         margin: 0 20px;
     }

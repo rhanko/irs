@@ -9,14 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Vybavenie
+ * Kategória, pod ktorú spadá článok
  */
 @Entity
-@Table(name = "Equipment")
+@Table(name = "Category")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Equipment {
+public class Category {
 
     /**
      * Primárny kľúč id
@@ -27,20 +27,14 @@ public class Equipment {
     private int id;
 
     /**
-     * Názov vybavenia
+     * Názov kategórie
      */
     @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false)
     private String name;
 
     /**
-     * Popisok vybavenia
+     * Zoznam článkov, ktoré spadajú pod danú kategóriu
      */
-    @Column(name = "description", columnDefinition = "VARCHAR(256)")
-    private String description;
-
-    /**
-     * Zoznam izieb vybavenia
-     */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "equipment")
-    private Set<RoomEquipment> roomEquipment = new HashSet<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private Set<Article> articles = new HashSet<>();
 }

@@ -3,42 +3,42 @@ package program.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import program.modelID.RoomEquipmentID;
+import program.modelID.UserApplianceID;
 
 import javax.persistence.*;
 
 /**
- * Vybavenie miestnosti
+ * Spotrebiče užívateľa
  */
 @Entity
-@Table(name = "Room_Equipment")
+@Table(name = "User_Appliance")
 @Getter
 @Setter
 @NoArgsConstructor
-public class RoomEquipment {
+public class UserAppliance {
 
     /**
      * Zložený primárny kľúč id
      */
     @EmbeddedId
-    private RoomEquipmentID id = new RoomEquipmentID();
+    private UserApplianceID id = new UserApplianceID();
 
     /**
-     * Miestnosť
+     * Užívateľ
      */
     @ManyToOne
-    @MapsId("roomid")
-    private Room room;
+    @MapsId("userid")
+    private User user;
 
     /**
-     * Vybavenie
+     * Spotrebič
      */
     @ManyToOne
-    @MapsId("equipmentid")
-    private Equipment equipment;
+    @MapsId("applianceid")
+    private Appliance appliance;
 
     /**
-     * Množstvo daného vybavenia v miestnosti
+     * Množstvo daného spotrebiča, ktoré si vzal užívateľ na izbu
      */
     @Column(name = "amount", columnDefinition = "int", nullable = false)
     private int amount;

@@ -1,6 +1,7 @@
 package program.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,19 +16,32 @@ import java.util.Set;
 @Table(name = "RoomType")
 @Getter
 @Setter
+@NoArgsConstructor
 public class RoomType {
 
+    /**
+     * Primárny kľúč id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "int")
     private int id;
 
-    @Column(name = "name_type", columnDefinition = "VARCHAR(30)", nullable = false)
-    private String nameType;
+    /**
+     * Názov typu miestnosti
+     */
+    @Column(name = "name", columnDefinition = "VARCHAR(30)", nullable = false)
+    private String name;
 
+    /**
+     * Popisok miestnosti
+     */
     @Column(name = "description", columnDefinition = "VARCHAR(256)")
-    private String capacity;
+    private String description;
 
+    /**
+     * Zoznam miestnosti daného typu
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
     private Set<Room> rooms = new HashSet<>();
 }

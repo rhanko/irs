@@ -1,6 +1,7 @@
 package program.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Table(name = "Faculty")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Faculty {
 
     /**
@@ -27,8 +29,8 @@ public class Faculty {
     /**
      * Názov fakulty
      */
-    @Column(name = "name_faculty", columnDefinition = "VARCHAR(20)", nullable = false)
-    private String nameFaculty;
+    @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false)
+    private String name;
 
     /**
      * Univerzita/ škola pod ktorú fakulta patrí
@@ -38,7 +40,7 @@ public class Faculty {
     private University university;
 
     /**
-     * Užívatelia danej fakulty
+     * Zoznam užívateľov navštevujúcich fakultu
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
     private Set<User> users = new HashSet<>();

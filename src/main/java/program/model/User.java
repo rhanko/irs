@@ -1,9 +1,12 @@
 package program.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Používateľ systému
@@ -12,6 +15,7 @@ import javax.persistence.*;
 @Table(name = "User")
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
 
     /**
@@ -60,7 +64,24 @@ public class User {
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
-    //TODO: prepojiť s tabuľkou appliance - id, názov, cena, a prepojenie kde budú zapísané všetky spotrebiče užívateľa a počet.
-    //TODO: pridať tabuľku article - Titulok, text, obrázok???, dátum spravenia, autor, kategória, zobrazenie
+    /**
+     * Zoznam spotrebičov užívateľa
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<UserAppliance> userAppliances = new HashSet<>();
+
+    /**
+     * Zoznam miestnosti (izieb), ktoré užívateľ obsadil / rezervoval
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<RoomOrder> roomOrders = new HashSet<>();
+
+
+    /**
+     * Zoznam článkov, ktoré napísal užívateľ
+     */
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Article> articles = new HashSet<>();
+
     //TODO: page - Názov, text
 }

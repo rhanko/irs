@@ -1,6 +1,7 @@
 package program.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Table(name = "Role")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Role {
 
     /**
@@ -28,11 +30,11 @@ public class Role {
     /**
      * Názov role
      */
-    @Column(name = "name_role", columnDefinition = "VARCHAR(20)", nullable = false)
-    private String nameRole;
+    @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false)
+    private String name;
 
     /**
-     * Úžívatelia danej role
+     * Zoznam užívateľov danej role
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
     private Set<User> users = new HashSet<>();

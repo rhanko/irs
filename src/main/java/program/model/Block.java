@@ -1,16 +1,21 @@
 package program.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Blok internátneho zariadenia
+ */
 @Entity
 @Table(name = "Block")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Block {
 
     /**
@@ -24,8 +29,8 @@ public class Block {
     /**
      * Názov bloku
      */
-    @Column(name = "name_block", columnDefinition = "VARCHAR(20)", nullable = false)
-    private String nameBlock;
+    @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false)
+    private String name;
 
     /**
      * Počet poschodí na bloku.
