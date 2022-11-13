@@ -41,6 +41,6 @@ public class Equipment {
     /**
      * Zoznam izieb vybavenia
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "equipment")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "equipment", cascade = CascadeType.REMOVE)
     private Set<RoomEquipment> roomEquipment = new HashSet<>();
 }

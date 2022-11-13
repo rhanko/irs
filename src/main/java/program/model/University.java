@@ -35,6 +35,6 @@ public class University {
     /**
      * Zoznam fakúlt danej univerzity
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "university")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "university", cascade = CascadeType.REMOVE)
     private Set<Faculty> faculties = new HashSet<>();
 }

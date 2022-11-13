@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
 <head>
     <meta charset="UTF-8">
   <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
@@ -22,26 +22,34 @@
     <div id="menubarlinks">
       <ul class="menubar">
         <li class="menufield">
-          <a class="menulink" href="/home" title="domov">Oznamy</a>
+          <a class="menulink" th:href="@{/home}" title="domov">Oznamy</a>
         </li>
 
         <!--TODO prerobiť to tu-->
         <li class="menufield">
-          <a class="menulink" href="/charges" title="poplatky">Poplatky</a>
+          <a class="menulink" th:href="@{/charges}" title="poplatky">Poplatky</a>
         </li>
 
         <!--TODO prerobiť to tu-->
         <li class="menufield">
-          <a class="menulink" href="/contacts" title="kontakt">Kontakty</a>
+          <a class="menulink" th:href="@{/contacts}" title="kontakt">Kontakty</a>
         </li>
 
         <li class="menufield" id="reservefield">
-          <a class="menulink" href="/reservation" title="rezervácia">Rezervácia</a>
+          <a class="menulink" th:href="@{/reservation}" title="rezervácia">Rezervácia</a>
         </li>
 
+        <th:block sec:authorize="!isAuthenticated()">
         <li class="menufield">
-          <a class="menulink" href="/login" title="Prihlásenie">Prihlásiť sa</a>
+          <a class="menulink" th:href="@{/login}" title="Prihlásenie">Prihlásiť sa</a>
         </li>
+        </th:block>
+
+        <th:block sec:authorize="isAuthenticated()">
+        <li class="menufield">
+          <a class="menulink" th:href="@{/logout}" title="Odhlásenie">Odhlásiť sa</a>
+        </li>
+        </th:block>
       </ul>
     </div>
   </div>

@@ -36,6 +36,6 @@ public class Dormitory {
     /**
      * Zoznam blokov, ktoré patria pod dané ubytovacie zariadenie
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dormitory")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dormitory", cascade = CascadeType.REMOVE)
     private Set<Block> blocks = new HashSet<>();
 }

@@ -1,27 +1,14 @@
 <!DOCTYPE html>
-<html lang="sk" xmlns:tr="http://www.w3.org/1999/xhtml">
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="fragments/head :: head"></head>
-  <body>
+  <body onload="pagename()">
     <!--Header-->
     <header th:replace="fragments/header :: header"></header>
 
     <!--Body of page-->
     <main>
-      <section class="news">
         <!--Header of page-->
-        <div class="headmain">
-          <!--Searchbar-->
-          <div class="searchbar">
-            <label>
-              <input type="text" placeholder="Hladať...">
-            </label>
-            <img class="iconsearch" src="https://www.seekpng.com/png/detail/958-9588716_buscar-buscarlogo-buscador-lupalogo-lupa-search-icon-search.png" alt="error" loading="lazy">
-          </div>
-
-          <!--Title of page-->
-          <h1 class="title">Poplatky</h1>
-          <hr class="headerbreak">
-        </div>
+        <div th:replace="fragments/headofpage :: headerofpage"></div>
 
         <!--Text area for page-->
         <div class="pagetext">
@@ -98,15 +85,10 @@
             </table>
           </div>
         </div>
-      </section>
     </main>
 
     <!--Footer-->
-    <footer>
-      <!--Copyright-->
-      <div class="copyright">
-        Copyright Radovan Hanko &copy; 2022
-      </div>
+    <footer th:replace="fragments/footer :: footer">
     </footer>
   </body>
 </html>

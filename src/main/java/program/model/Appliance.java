@@ -41,6 +41,6 @@ public class Appliance {
     /**
      * Zoznam užívateľov spotrebiča
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "appliance")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "appliance", cascade = CascadeType.REMOVE)
     private Set<UserAppliance> userAppliances = new HashSet<>();
 }

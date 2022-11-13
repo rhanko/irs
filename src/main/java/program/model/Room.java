@@ -64,12 +64,12 @@ public class Room {
     /**
      * Zoznam vybavenia izby
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.REMOVE)
     private Set<RoomEquipment> roomEquipments = new HashSet<>();
 
     /**
      * Zoznam objednávok izby
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.REMOVE)
     private Set<RoomOrder> roomOrders = new HashSet<>();
 }

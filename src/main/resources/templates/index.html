@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/head :: head"></head>
-    <body>
+    <body onload="pagename() && articleMaxSize()">
         <!--Header-->
         <header th:replace="fragments/header :: header"></header>
         <!--Body of page-->
         <main>
             <section class="news">
                 <!--Header of page-->
-                <div class="headmain">
-                    <!--Searchbar-->
-                    <div class="searchbar">
-                        <label>
-                            <input type="text" placeholder="Hladať...">
-                        </label>
-                        <img class="iconsearch" src="https://www.seekpng.com/png/detail/958-9588716_buscar-buscarlogo-buscador-lupalogo-lupa-search-icon-search.png" alt="error" loading="lazy">
-                    </div>
-
-                    <!--Title of page-->
-                    <h1 class="title">Oznamy</h1>
-                    <hr class="headerbreak">
-                </div>
-
-                <!--Text area for page-->
-                <div class="pagetext">
-                    <div class="">
-                    </div>
-                </div>
+                <div th:replace="fragments/headofpage :: headerofpage"></div>
 
                 <!--Articles-->
                 <div class="articles">
-                    <article class="card">
+                    <article class="card" th:each="article : ${articles}">
                         <h2 class="articletitle">
                             Lorem Ipsum Lorem Ipsum
                         </h2>
@@ -39,7 +21,7 @@
                             05.10.2022 10:55:00
                         </div>
 
-                        <p class="articletext">
+                        <p class="articletext" id="articletext1">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
@@ -52,7 +34,7 @@
                             autor: Radovan hanko
                         </div>
                     </article>
-
+<!--
                     <article class="card">
                         <h2 class="articletitle">
                             Lorem Ipsum Lorem
@@ -118,16 +100,13 @@
                             autor: Radovan Hanko
                         </div>
                     </article>
+                    -->
                 </div>
             </section>
         </main>
 
         <!--Footer-->
-        <footer>
-            <!--Copyright-->
-            <div class="copyright">
-                Copyright Radovan Hanko &copy; 2022
-            </div>
+        <footer th:replace="fragments/footer :: footer">
         </footer>
     </body>
 </html>

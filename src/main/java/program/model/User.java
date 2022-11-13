@@ -1,11 +1,15 @@
 package program.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,6 +20,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     /**
@@ -29,33 +34,49 @@ public class User {
     /**
      * Užívateľské meno - prihlasovací údaj
      */
-    @Column(name = "username", columnDefinition = "VARCHAR(20)", nullable = false)
+    @NotNull
+    @NotEmpty
+    @Size(min = 4, max = 20, message = "Musí obsahovať aspoň 4 znaky a najviac 20 znakov")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
+    @Column(name = "username", columnDefinition = "VARCHAR(20)", nullable = false, unique = true)
     private String username;
 
     /**
      * Heslo užívateľa - prihlasovací údaj
      */
-    @Column(name = "password", columnDefinition = "VARCHAR(20)", nullable = false)
+    @NotNull
+    @NotEmpty
+    @Column(name = "password", nullable = false)
     private String password;
 
     /**
      * Meno užívateľa
      */
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
     @Column(name = "name", columnDefinition = "VARCHAR(20)")
-    private String name;
+    private String firstname;
 
     /**
      * Priezvisko užívateľa
      */
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
     @Column(name = "surname", columnDefinition = "VARCHAR(20)")
     private String surname;
 
+    @Email
+    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 30, message = "Môže obsahovať najviac 30 znakov")
+    //@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
+    @Column(name = "mail", columnDefinition = "VARCHAR(30)", nullable = false)
+    private String mail;
+
     /**
-     * Rola, ktorú má užívateľ
+     * Zoznam rolí, ktoré má užívateľ
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    private List<Role> role = new ArrayList<>();
 
     /**
      * Fakulta, ktorú navštevuje užívateľ (ak je študent)
@@ -67,21 +88,31 @@ public class User {
     /**
      * Zoznam spotrebičov užívateľa
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<UserAppliance> userAppliances = new HashSet<>();
 
     /**
      * Zoznam miestnosti (izieb), ktoré užívateľ obsadil / rezervoval
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<RoomOrder> roomOrders = new HashSet<>();
 
 
     /**
      * Zoznam článkov, ktoré napísal užívateľ
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Article> articles = new HashSet<>();
 
-    //TODO: page - Názov, text
+    public void addRole(Role role) {
+        if (!this.role.contains(role)) {
+            this.role.add(role);
+        }
+    }
+
+    public void removeRole(Role role) {
+        if (this.role.contains(role)) {
+            this.role.remove(role);
+        }
+    }
 }

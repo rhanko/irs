@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="300">
+
+  <title>Internáty</title>
+
+  <link th:href="@{/styles/loginstyle.css}" rel="stylesheet" />
+
+
+  <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
+
+  <script defer th:src="@{scripts/pagename.js}"></script>
+
+</head>
+
+<body onload="pagename()">
+  <!--Body of page-->
+  <main>
+    <!--Header of page-->
+    <h1 class="title" id="title"></h1>
+    <hr class="headerbreak">
+      <!--Text area for page-->
+    <form th:fragment="login" method="post" role="form" th:action="@{/login}">
+
+      <!--Errors-->
+      <div th:if="${param.error}" class="info error">
+        <p>Nesprávne užívateľské meno / e-mail alebo heslo.</p>
+      </div>
+      <div th:if="${param.logout}" class="info accepted">
+        <p>Boli ste úspešne odhlásený.</p>
+      </div>
+      <div th:if="${param.account_has_been_deleted}" class="info accepted">
+        <p>Váš účet bol úspešne vymazaný.</p>
+      </div>
+      <div th:if="${param.register_success}" class="info accepted">
+        <p>Váš účet bol úspešne vytvorený.</p>
+      </div>
+      <div th:if="${param.expired}" class="info warning">
+        <p>Prihlásenie expirovalo.</p>
+      </div>
+      <div th:if="${param.isEmpty()}" class="info">&nbsp</div>
+
+      <!--Username-->
+      <div class="loginform">
+        <label class="logintext" for="username">Užívateľské meno</label> <br>
+        <input class="logininput" type="text" id="username" name="username" placeholder="Užívateľské meno / e-mail" minlength="4" maxlength="20"/>
+      </div>
+
+      <!--Password-->
+      <div class="loginform">
+        <label class="logintext" for="password">Heslo</label> <br>
+        <input class="logininput" type="password" id="password" name="password" placeholder="Heslo" minlength="6" maxlength="20"/>
+      </div>
+
+      <!--Login button and lost password link-->
+      <div class="loginform">
+        <button class="loginbutton" type="submit">Prihlásiť</button>
+      </div>
+      <div  class="loginlink">
+        <a id="lost_password" th:href="@{/lost_password}">Zabudnuté heslo</a>
+      </div>
+    </form>
+
+    <!--Mainpage and register links-->
+    <div  class="loginlink">
+      <a id="mainpage" th:href="@{/home}">Späť na hlavnú stránku</a>
+      <a id="register" th:href="@{/register}">Nemám ešte účet</a>
+    </div>
+  </main>
+</body>
+</html>

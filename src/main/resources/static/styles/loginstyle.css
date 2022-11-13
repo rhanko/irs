@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #e2e2e2;
+}
+
+main {
+    margin: 20vh auto 0 auto;
+    background: whitesmoke;
+    width: clamp(350px, 50%, 750px);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+
+.title {
+    padding-left: 15px;
+    font-size: 32pt;
+}
+
+.info {
+    margin: 5px 15px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16pt;
+}
+
+.error {
+    background: #ea0030;
+    border: 2px solid;
+    border-color: #560018;
+}
+
+.error,
+.error2 {
+    color: #530000;
+}
+
+.warning {
+    color: #78760c;
+    background: yellow;
+    border: 2px solid;
+    border-color: #78760C;
+}
+
+.accepted {
+    color: #005300;
+    background: #00ea00;
+    border: 2px solid;
+    border-color: #005300;
+}
+#lost_password,
+.loginform {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: max(20%, 20px);
+}
+
+.logintext {
+    font-size: 18pt;
+    white-space: nowrap;
+}
+
+.logininput {
+    font-size: clamp(8pt, calc(10pt + 1vw), 17pt);
+}
+
+.loginbutton {
+    background-color: #838383;
+    float: right;
+    margin-right: 20px;
+    padding: 5px 10px;
+    font-size: 14pt;
+    border-radius: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.space,
+.loginlink {
+    white-space: nowrap;
+    margin-top: 15px;
+    padding-bottom:  10px;
+}
+
+#mainpage {
+    float: left;
+}
+
+#register,
+#login {
+    float: right;
+}
+
+@media only screen and (max-width: 499px) {
+    main {
+        margin: 0 auto;
+    }
+}

@@ -7,6 +7,10 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Trieda pre spravenie kompozitného ID
+ * v tabuľke "Room_Equipment"
+ */
 @Embeddable
 @Setter
 @Getter

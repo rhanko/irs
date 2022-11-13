@@ -7,6 +7,10 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Trieda pre spravenie kompozitného ID
+ * v tabuľke "User_Appliance"
+ */
 @Embeddable
 @Getter
 @Setter

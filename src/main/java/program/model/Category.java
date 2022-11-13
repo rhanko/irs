@@ -35,6 +35,6 @@ public class Category {
     /**
      * Zoznam článkov, ktoré spadajú pod danú kategóriu
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.REMOVE)
     private Set<Article> articles = new HashSet<>();
 }

@@ -42,6 +42,6 @@ public class RoomType {
     /**
      * Zoznam miestnosti daného typu
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType", cascade = CascadeType.REMOVE)
     private Set<Room> rooms = new HashSet<>();
 }

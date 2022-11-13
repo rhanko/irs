@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="300">
+
+    <title>Internáty</title>
+
+    <link th:href="@{/styles/loginstyle.css}" rel="stylesheet" />
+
+
+    <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
+
+    <script defer th:src="@{scripts/pagename.js}"></script>
+
+</head>
+
+<body onload="pagename()">
+    <!--Body of page-->
+    <main>
+        <!--Header of page-->
+        <h1 class="title" id="title"></h1>
+        <hr class="headerbreak">
+        <!--Text area for page-->
+        <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+            <div class="info">
+                <p>&nbsp</p>
+            </div>
+            <!--Username-->
+            <div class="loginform">
+                <label class="logintext" for="uname">Užívateľské meno*</label> <br>
+                <input class="logininput" id="uname" type="text" th:field="*{username}" th:value="*{username}" required minlength="4" maxlength="20"/>
+                <p class="error2" th:errors = "*{username}" th:if="${#fields.hasErrors('username')}"></p>
+            </div>
+
+            <!--Password-->
+            <div class="loginform">
+                <label class="logintext" for="pw">Heslo*</label> <br>
+                <input class="logininput" id="pw" type="password" th:field="*{password}" th:value="*{password}" required minlength="6" maxlength="20" />
+                <p class="error2" th:errors = "*{password}" th:if="${#fields.hasErrors('password')}"></p>
+            </div>
+
+            <!--E-mail-->
+            <div class="loginform">
+                <label class="logintext" for="email">E-mail*</label> <br>
+                <input class="logininput" id="email" type="email" th:field="*{mail}" th:value="*{mail}" required maxlength="30" />
+                <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
+            </div>
+
+            <!--Firstname-->
+            <div class="loginform">
+                <label class="logintext" for="fname">Meno</label> <br>
+                <input class="logininput" id="fname" type="text" th:field="*{firstname}" th:value="*{firstname}"/>
+                <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
+            </div>
+
+            <!--Lastname-->
+            <div class="loginform">
+                <label class="logintext" for="sname">Priezvisko</label> <br>
+                <input class="logininput" id="sname" type="text" th:field="*{surname}" th:value="*{surname}" />
+                <p class="error2" th:errors = "*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
+            </div>
+
+            <!--Register button-->
+            <div class="loginform">
+                <button class="loginbutton" type="submit">Registrovať</button>
+                <div class="space">* polia musia byť vyplnené</div>
+            </div>
+        </form>
+
+        <!--Mainpage and login links-->
+        <div class="loginlink">
+            <a id="mainpage" th:href="@{/home}">Späť na hlavnú stránku</a>
+            <a id="login" th:href="@{/login}">Už mám účet</a>
+        </div>
+  </main>
+</body>
+</html>

@@ -26,14 +26,14 @@ public class UserAppliance {
     /**
      * Užívateľ
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userid")
     private User user;
 
     /**
      * Spotrebič
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("applianceid")
     private Appliance appliance;
 

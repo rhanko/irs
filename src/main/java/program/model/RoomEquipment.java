@@ -26,14 +26,14 @@ public class RoomEquipment {
     /**
      * Miestnosť
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("roomid")
     private Room room;
 
     /**
      * Vybavenie
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("equipmentid")
     private Equipment equipment;
 

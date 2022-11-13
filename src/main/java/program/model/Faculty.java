@@ -42,7 +42,7 @@ public class Faculty {
     /**
      * Zoznam užívateľov navštevujúcich fakultu
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty", cascade = CascadeType.REMOVE)
     private Set<User> users = new HashSet<>();
 
 }

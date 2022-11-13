@@ -25,10 +25,12 @@ footer {
     font-size: 13pt;
 }
 
+.loginform .menubar,
 .menubar {
     margin: 0 20.5%;
     list-style-type: none;
     overflow: hidden;
+    text-align: center;
 }
 
 .menufield {
@@ -39,11 +41,12 @@ footer {
     display: none;
 }
 
-.menufield:nth-last-child(2) {
+.menu .menufield:nth-last-child(2) {
     margin-right: 0;
 }
 
 .menufield .menulink {
+    cursor: pointer;
     display: block;
     margin: 3px 0;
     padding: 15px;
@@ -82,19 +85,19 @@ body,
 }
 
 #reservefield .menulink {
-    background-color: #5e140f;
+    background-color: darkgreen;
 }
 
 #reservefield .menulink:hover {
-    background-color: #7c170f;
+    background-color: green;
 }
 
 #reservefield .menulink:active {
-    background-color: #6e140f;
+    background-color: forestgreen;
 }
 
 #reservefield .menulink {
-    color: rgba(207, 208, 214, 0.61);
+    color: rgba(207, 208, 214, 0.90);
 }
 
 .headerimage {
@@ -142,8 +145,8 @@ input:focus {
 }
 
 .searchbar,
-.menufield:last-child,
-.menufield:nth-last-child(2),
+.menu .menufield:last-child,
+.menu .menufield:nth-last-child(2),
 .articledate,
 .articleauthor,
 .copyright {
@@ -198,6 +201,11 @@ footer {
     min-width: 50%;
 }
 
+.loginform .menubar {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+}
+
 @media only screen and (max-width: 599px) {
     .menu {
         position: relative;
@@ -248,8 +256,8 @@ footer {
     }
 
     .menufield,
-    .menufield:nth-last-child(2),
-    .menufield:last-child{
+    .menu .menufield:nth-last-child(2),
+    .menu .menufield:last-child{
         margin: 0 20px;
     }
 
@@ -257,9 +265,13 @@ footer {
     .subtitle {
         width: 60%;
     }
+
+    .loginform .menubar {
+        grid-template-columns: auto;
+    }
 }
 
-@media only screen and (max-width: 899px) {
+@media only screen and (max-width: 999px) {
     .menubar,
     .copyright {
         margin: 0 5px;
@@ -281,9 +293,13 @@ footer {
     }
 }
 
-@media only screen and (min-width: 900px) and (max-width: 999px) {
+@media only screen and (min-width: 1000px) and (max-width: 1099px) {
     .articles {
         grid-template-columns: auto;
+    }
+
+    .loginform .menubar {
+        grid-template-columns: auto auto;
     }
 }
 
@@ -318,4 +334,35 @@ table {
 
 td {
     padding: 5px 10px;
+}
+
+.loginform {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.loginform .break {
+    margin-top: 30px;
+}
+
+.loginform .menubar .menufield {
+    white-space: nowrap;
+    margin: 0 30px;
+}
+
+.logintext {
+    font-size: 15pt;
+}
+
+.logininput {
+    margin-top: 5px;
+    font-size: 12pt;
+}
+
+#delete {
+    background: darkred;
+}
+
+#delete:hover {
+    background: red;
 }

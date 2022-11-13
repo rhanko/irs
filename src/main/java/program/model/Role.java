@@ -30,12 +30,12 @@ public class Role {
     /**
      * Názov role
      */
-    @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false)
+    @Column(name = "name", columnDefinition = "VARCHAR(20)", nullable = false, unique = true)
     private String name;
 
     /**
      * Zoznam užívateľov danej role
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     private Set<User> users = new HashSet<>();
 }

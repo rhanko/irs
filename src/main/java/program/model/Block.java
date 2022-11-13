@@ -49,6 +49,6 @@ public class Block {
     /**
      * Izby daného bloku
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "block")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "block", cascade = CascadeType.REMOVE)
     private Set<Room> rooms = new HashSet<>();
 }
