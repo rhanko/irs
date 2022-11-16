@@ -11,17 +11,16 @@
   <div class="pagetext">
     <div class="subarea">
       <form method="post" role="form" th:action="@{/profile/save}" th:object="${user}">
+        <div class="info">
+          <p>&nbsp</p>
+        </div>
 
         <input type="hidden" id="id" th:value="*{id}" th:field="*{id}" readonly>
+        <input class="logininput" id="pwold" type="text" th:value="*{password}" th:field="*{password}" hidden>
 
         <div class="loginform">
           <label class="logintext" for="uname">Užívateľské meno</label> <br>
           <input class="logininput" id="uname" type="text" th:value="*{username}" th:field="*{username}" readonly/>
-        </div>
-
-        <div class="loginform">
-          <label class="logintext" for="pw">Heslo</label> <br>
-          <input class="logininput" id="pw" type="password" th:value="*{password}" th:field="*{password}">
         </div>
 
         <div class="loginform">
