@@ -13,6 +13,8 @@
     <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
 
     <script defer th:src="@{scripts/pagename.js}"></script>
+    <script defer th:src="@{scripts/registerValidator.js}"></script>
+
 
 </head>
 
@@ -23,21 +25,22 @@
         <h1 class="title" id="title"></h1>
         <hr class="headerbreak">
         <!--Text area for page-->
-        <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+        <form name="RegisterForm" method="post" role="form" th:action="@{/register/save}" th:object="${user}">
             <div class="info">
                 <p>&nbsp</p>
             </div>
             <!--Username-->
             <div class="loginform">
                 <label class="logintext" for="uname">Užívateľské meno*</label> <br>
-                <input class="logininput" id="uname" type="text" th:field="*{username}" th:value="*{username}" required minlength="4" maxlength="20"/>
+                <input class="logininput" id="uname" name="uname" type="text" th:field="*{username}" th:value="*{username}" required minlength="4" maxlength="20" onchange="usernameValidator()"/>
                 <p class="error2" th:errors = "*{username}" th:if="${#fields.hasErrors('username')}"></p>
+                <p class="error2" id="errorUsername"></p>
             </div>
 
             <!--Password-->
             <div class="loginform">
                 <label class="logintext" for="pw">Heslo*</label> <br>
-                <input class="logininput" id="pw" type="password" th:field="*{password}" th:value="*{password}" required minlength="6" maxlength="20" />
+                <input class="logininput" id="pw" type="password" th:field="*{password}" th:value="*{password}" required minlength="6" maxlength="20"/>
                 <p class="error2" th:errors = "*{password}" th:if="${#fields.hasErrors('password')}"></p>
             </div>
 

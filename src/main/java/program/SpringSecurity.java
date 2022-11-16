@@ -23,7 +23,6 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeRequests()
                 //nie je prihlasený
-                .antMatchers("/register").anonymous()
                 .antMatchers("/lostpassword").anonymous()
 
                 //prihlaseny

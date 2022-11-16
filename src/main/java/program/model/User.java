@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -52,14 +53,16 @@ public class User {
     /**
      * Meno užívateľa
      */
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
+    @Nullable
+    @Pattern(regexp = "^$|^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z")
     @Column(name = "name", columnDefinition = "VARCHAR(20)")
     private String firstname;
 
     /**
      * Priezvisko užívateľa
      */
-    @Pattern(regexp = "^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
+    @Nullable
+    @Pattern(regexp = "^(?:[a-zA-Z]+)|$", message = "Môže obsahovať len znaky: a-z, A-Z")
     @Column(name = "surname", columnDefinition = "VARCHAR(20)")
     private String surname;
 
@@ -67,7 +70,7 @@ public class User {
     @NotNull
     @NotEmpty
     @Size(min = 1, max = 30, message = "Môže obsahovať najviac 30 znakov")
-    //@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9")
+    @Pattern(regexp = "^[a-zA-Z0-9@._]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9, @ a .")
     @Column(name = "mail", columnDefinition = "VARCHAR(30)", nullable = false)
     private String mail;
 

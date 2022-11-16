@@ -16,6 +16,11 @@ main {
     border: 2px solid gray;
 }
 
+h1,
+h2 {
+    text-transform: uppercase
+}
+
 .title {
     padding-left: 15px;
     font-size: 32pt;

@@ -93,6 +93,17 @@ public class UserController {
         return "/account/profile";
     }
 
+    @PostMapping("/profile/save")
+    public String profileEdit(@Valid User user, Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User userLoggedIn = userService.findUserByNickname(((UserDetails) principal).getUsername());
+
+        model.addAttribute("user", user);
+
+        return("redirect:/profile?edit_success");
+    }
+
     @GetMapping("/login")
     public String login() {
         return "/account/login";
