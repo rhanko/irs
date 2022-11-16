@@ -12,44 +12,44 @@
         <div class="subarea">
             <form method="get" role="form" th:object="${user}">
 
-                <input type="hidden" id="id" th:value="*{id}"></input>
+                <input type="hidden" id="id" th:value="*{id}" readonly="readonly">
 
                 <div class="loginform">
                     <label class="logintext" for="uname">Užívateľské meno</label> <br>
-                    <input class="logininput" id="uname" type="text" th:value="*{username}" disabled/>
+                    <input class="logininput" id="uname" type="text" th:value="*{username}" readonly="readonly"/>
                 </div>
-
+<!--
                 <div class="loginform">
                     <label class="logintext" for="pw">Heslo</label> <br>
-                    <input class="logininput" id="pw" type="password" th:value="*{password}" disabled>
+                    <input class="logininput" id="pw" type="password" th:value="*{password}" readonly="readonly"/>
                 </div>
-
+-->
                 <div class="loginform">
                     <label class="logintext" for="email">E-mail</label> <br>
-                    <input class="logininput" id="email" type="email" th:value="*{mail}"/>
+                    <input class="logininput" id="email" type="email" th:value="*{mail}" readonly="readonly"/>
                 </div>
 
                 <div class="loginform">
                     <label class="logintext" for="fname">Meno</label> <br>
-                    <input class="logininput" id="fname" type="text" th:value="*{firstname}"/>
+                    <input class="logininput" id="fname" type="text" th:value="*{firstname}" readonly="readonly"/>
 
                 </div>
 
                 <div class="loginform">
                     <label class="logintext" for="sname">Priezvisko</label> <br>
-                    <input class="logininput" id="sname" type="text" th:value="*{surname}"/>
+                    <input class="logininput" id="sname" type="text" th:value="*{surname}" readonly="readonly"/>
                 </div>
 
                 <div class="loginform">
                     <label class="logintext" for="university">Univerzita</label> <br>
-                    <input class="logininput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" disabled/>
-                    <input class="logininput" type="text"  th:if="*{faculty == null}" disabled/>
+                    <input class="logininput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
+                    <input class="logininput" type="text"  th:if="*{faculty == null}" readonly="readonly"/>
                 </div>
 
                 <div class="loginform">
                     <label class="logintext" for="faculty">Fakulta</label> <br>
-                    <input class="logininput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" disabled/>
-                    <input class="logininput" type="text" th:if="*{faculty == null}" disabled/>
+                    <input class="logininput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" readonly="readonly"/>
+                    <input class="logininput" type="text" th:if="*{faculty == null}" readonly="readonly"/>
                 </div>
             </form>
 
@@ -57,10 +57,9 @@
                 <div class="loginform">
                     <ul class="menubar">
                         <li class="menufield">
-                            <form method="post" th:action="@{/profile/edit}">
-                                <button class="menulink" id="update" type="submit">Upraviť</button>
-                            </form>
+                            <a class="menulink" id="update" th:href="@{/profile/edit}">Upraviť</a>
                         </li>
+
                         <li class="menufield">
                             <form method="get" th:action="@{/profile/delete}">
                                 <button class="menulink" id="delete" type="submit">Odstrániť</button>

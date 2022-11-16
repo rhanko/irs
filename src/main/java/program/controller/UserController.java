@@ -93,13 +93,46 @@ public class UserController {
         return "/account/profile";
     }
 
+    @GetMapping("/profile/edit")
+    public String profileEdit(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User user = userService.findUserByNickname(((UserDetails) principal).getUsername());
+        user.setPassword(userService.findUserByNickname(user.getUsername()).getPassword());
+
+        model.addAttribute("user", user);
+
+        return "/account/profileedit";
+    }
+
     @PostMapping("/profile/save")
-    public String profileEdit(@Valid User user, Model model) {
+    public String profileSave(@Valid User user, Model model, BindingResult result) {
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User userLoggedIn = userService.findUserByNickname(((UserDetails) principal).getUsername());
 
-        model.addAttribute("user", user);
+        if (!(user.equals(userLoggedIn) || user.getUsername().equals(userLoggedIn.getUsername()))) {
+
+            User findUserByEmail = userService.findUserByEmail(user.getMail());
+
+            //kontrola mailu
+            if (findUserByEmail != null && user.getMail().equals(findUserByEmail.getMail()) && !(userLoggedIn.getMail().equals(findUserByEmail.getMail()))) {
+                result.rejectValue("mail", null, "Tento e-mail už používa iná osoba.");
+            }
+
+            //kontrola hesla
+            if(user.getPassword().length() > 20 && user.getPassword().length() < 6) {
+                result.rejectValue("password", null, "Musí obsahovať aspoň 6 znaky a najviac 20 znakov");
+            }
+
+            if(result.hasErrors()) {
+                model.addAttribute("user", user);
+                return "/account/profileedit";
+            }
+        }
+
+        userService.saveUserEdited(user);
 
         return("redirect:/profile?edit_success");
     }

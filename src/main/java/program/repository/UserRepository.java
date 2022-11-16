@@ -24,9 +24,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     User findUserByMail(String mail);
 
-    /**
-     * Metóda na odstránenie užívateľa
-     * @param nickname meno užívateľa
-     */
-    void deleteUserByUsername(String nickname);
+    User findUserById(int id);
 }

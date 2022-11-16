@@ -66,9 +66,27 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void saveUserEdited(User user) {
+        User editedUser = userRepository.findUserById(user.getId());
+
+        editedUser.setMail(user.getMail());
+        editedUser.setFirstname(user.getFirstname());
+        editedUser.setSurname(user.getSurname());
+
+        //ak sa heslá zhodujú tak heslo sa needitovalo
+        if (user.getPassword() != null) {
+            if (!(user.getPassword().equals(editedUser.getPassword()))) {
+                if (!(passwordEncoder.matches(user.getPassword(), editedUser.getPassword()))) {
+                    user.setPassword(passwordEncoder.encode(user.getPassword()));
+                }
+            }
+        }
+
+        userRepository.save(editedUser);
+    }
+
     public List<User> findAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
     public User findUserByNickname(String nickname) {

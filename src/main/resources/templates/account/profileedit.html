@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body onload="pagename()">
+<header th:replace="fragments/header :: header"></header>
+<main>
+  <!--Header of page-->
+  <div th:replace="fragments/headofpage :: headerofpage"></div>
+
+  <!--Text area for page-->
+  <div class="pagetext">
+    <div class="subarea">
+      <form method="post" role="form" th:action="@{/profile/save}" th:object="${user}">
+
+        <input type="hidden" id="id" th:value="*{id}" th:field="*{id}" readonly>
+
+        <div class="loginform">
+          <label class="logintext" for="uname">Užívateľské meno</label> <br>
+          <input class="logininput" id="uname" type="text" th:value="*{username}" th:field="*{username}" readonly/>
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="pw">Heslo</label> <br>
+          <input class="logininput" id="pw" type="password" th:value="*{password}" th:field="*{password}">
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="email">E-mail</label> <br>
+          <input class="logininput" id="email" type="email" th:value="*{mail}" th:field="*{mail}"/>
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="fname">Meno</label> <br>
+          <input class="logininput" id="fname" type="text" th:value="*{firstname}" th:field="*{firstname}"/>
+
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="sname">Priezvisko</label> <br>
+          <input class="logininput" id="sname" type="text" th:value="*{surname}" th:field="*{surname}"/>
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="university">Univerzita</label> <br>
+          <input class="logininput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" disabled/>
+          <input class="logininput" type="text"  th:if="*{faculty == null}" disabled/>
+        </div>
+
+        <div class="loginform">
+          <label class="logintext" for="faculty">Fakulta</label> <br>
+          <input class="logininput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" disabled/>
+          <input class="logininput" type="text" th:if="*{faculty == null}" disabled/>
+        </div>
+
+        <div class="loginform">
+          <ul class="menubar">
+            <li class="menufield">
+              <button class="menulink" id="update" type="submit">Uložiť</button>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>
