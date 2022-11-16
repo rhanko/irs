@@ -32,7 +32,7 @@
             <!--Username-->
             <div class="loginform">
                 <label class="logintext" for="uname">Užívateľské meno*</label> <br>
-                <input class="logininput" id="uname" name="uname" type="text" th:field="*{username}" th:value="*{username}" required minlength="4" maxlength="20" onchange="usernameValidator()"/>
+                <input class="logininput" id="uname" name="uname" type="text" th:field="*{username}" th:value="*{username}" required minlength="4" maxlength="20" onchange="usernameValidate()"/>
                 <p class="error2" th:errors = "*{username}" th:if="${#fields.hasErrors('username')}"></p>
                 <p class="error2" id="errorUsername"></p>
             </div>
@@ -40,34 +40,39 @@
             <!--Password-->
             <div class="loginform">
                 <label class="logintext" for="pw">Heslo*</label> <br>
-                <input class="logininput" id="pw" type="password" th:field="*{password}" th:value="*{password}" required minlength="6" maxlength="20"/>
+                <input class="logininput" id="pw" type="password"  name="password" th:field="*{password}" th:value="*{password}" required minlength="6" maxlength="20" onchange="passwordValidate()"/>
                 <p class="error2" th:errors = "*{password}" th:if="${#fields.hasErrors('password')}"></p>
+                <p class="error2" id="errorPassword"></p>
             </div>
 
             <!--E-mail-->
             <div class="loginform">
                 <label class="logintext" for="email">E-mail*</label> <br>
-                <input class="logininput" id="email" type="email" th:field="*{mail}" th:value="*{mail}" required maxlength="30" />
+                <input class="logininput" id="email" name="email" type="email" th:field="*{mail}" th:value="*{mail}" required maxlength="30" onchange="emailValidate()"/>
                 <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
+                <p class="error2" id="errorEmail"></p>
+
             </div>
 
             <!--Firstname-->
             <div class="loginform">
                 <label class="logintext" for="fname">Meno</label> <br>
-                <input class="logininput" id="fname" type="text" th:field="*{firstname}" th:value="*{firstname}"/>
+                <input class="logininput" id="fname" name="fname" type="text" th:field="*{firstname}" th:value="*{firstname}" onchange="firstnameValidate()"/>
                 <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
+                <p class="error2" id="errorFirstname"></p>
             </div>
 
             <!--Lastname-->
             <div class="loginform">
                 <label class="logintext" for="sname">Priezvisko</label> <br>
-                <input class="logininput" id="sname" type="text" th:field="*{surname}" th:value="*{surname}" />
+                <input class="logininput" id="sname" name="sname" type="text" th:field="*{surname}" th:value="*{surname}" onchange="lastnameValidate()"/>
                 <p class="error2" th:errors = "*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
+                <p class="error2" id="errorSurname"></p>
             </div>
 
             <!--Register button-->
             <div class="loginform">
-                <button class="loginbutton" type="submit">Registrovať</button>
+                <button class="loginbutton" id="registerbutton" type="submit">Registrovať</button>
                 <div class="space">* polia musia byť vyplnené</div>
             </div>
         </form>

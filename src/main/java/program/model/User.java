@@ -54,6 +54,7 @@ public class User {
      * Meno užívateľa
      */
     @Nullable
+    @Size(max = 20, message = "Môže obsahovať najviac 20 znakov")
     @Pattern(regexp = "^$|^[a-zA-Z]+$", message = "Môže obsahovať len znaky: a-z, A-Z")
     @Column(name = "name", columnDefinition = "VARCHAR(20)")
     private String firstname;
@@ -62,6 +63,7 @@ public class User {
      * Priezvisko užívateľa
      */
     @Nullable
+    @Size(max = 20, message = "Môže obsahovať najviac 20 znakov")
     @Pattern(regexp = "^(?:[a-zA-Z]+)|$", message = "Môže obsahovať len znaky: a-z, A-Z")
     @Column(name = "surname", columnDefinition = "VARCHAR(20)")
     private String surname;
@@ -69,8 +71,8 @@ public class User {
     @Email
     @NotNull
     @NotEmpty
-    @Size(min = 1, max = 30, message = "Môže obsahovať najviac 30 znakov")
-    @Pattern(regexp = "^[a-zA-Z0-9@._]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9, @ a .")
+    @Size(max = 30, message = "Môže obsahovať najviac 30 znakov")
+    @Pattern(regexp = "^[a-zA-Z0-9@._-]+$", message = "Môže obsahovať len znaky: a-z, A-Z, 0-9, @ a .")
     @Column(name = "mail", columnDefinition = "VARCHAR(30)", nullable = false)
     private String mail;
 
