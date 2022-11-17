@@ -366,3 +366,7 @@ td {
 #delete:hover {
     background: red;
 }
+
+.error2 {
+    color: #530000;
+}

@@ -108,9 +108,9 @@ function canSubmit() {
     let button = document.getElementById("registerbutton");
 
     if (sucet === 5) {
-        button.style.cursor = "unset";
+        button.style.pointerEvents = "unset";
     }
     else {
-        button.style.cursor = "not-allowed";
+        button.style.pointerEvents = "none";
     }
 }

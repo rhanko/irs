@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"></head>
+  <head th:replace="fragments/head :: head"></head>
+
 <body onload="pagename()">
 <header th:replace="fragments/header :: header"></header>
 <main>
   <!--Header of page-->
   <div th:replace="fragments/headofpage :: headerofpage"></div>
-
   <!--Text area for page-->
   <div class="pagetext">
     <div class="subarea">
-      <form method="post" role="form" th:action="@{/profile/save}" th:object="${user}">
+      <form method="post" role="form" th:action="@{/profile-edit/save}" th:object="${user}">
         <div class="info">
           <p>&nbsp</p>
         </div>
@@ -20,23 +20,31 @@
 
         <div class="loginform">
           <label class="logintext" for="uname">Užívateľské meno</label> <br>
-          <input class="logininput" id="uname" type="text" th:value="*{username}" th:field="*{username}" readonly/>
+          <input class="logininput" id="uname" name="uname" type="text" th:value="*{username}" th:field="*{username}" readonly/>
+          <p class="error2" id="errorUsername"></p>
         </div>
 
         <div class="loginform">
           <label class="logintext" for="email">E-mail</label> <br>
-          <input class="logininput" id="email" type="email" th:value="*{mail}" th:field="*{mail}"/>
+          <input class="logininput" id="email" name="email" type="email" th:value="*{mail}" th:field="*{mail}" required onchange="emailValidate()"/>
+          <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
+          <p class="error2" id="errorEmail"></p>
         </div>
 
         <div class="loginform">
           <label class="logintext" for="fname">Meno</label> <br>
-          <input class="logininput" id="fname" type="text" th:value="*{firstname}" th:field="*{firstname}"/>
+          <input class="logininput" id="fname" name="fname" type="text" th:value="*{firstname}" th:field="*{firstname}" onchange="firstnameValidate()"/>
+          <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
+          <p class="error2" id="errorFirstname"></p>
 
         </div>
 
         <div class="loginform">
           <label class="logintext" for="sname">Priezvisko</label> <br>
-          <input class="logininput" id="sname" type="text" th:value="*{surname}" th:field="*{surname}"/>
+          <input class="logininput" id="sname" name="sname" type="text" th:value="*{surname}" th:field="*{surname}" onchange="lastnameValidate()"/>
+          <p class="error2" th:errors = "*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
+          <p class="error2" id="errorSurname"></p>
+
         </div>
 
         <div class="loginform">
@@ -54,7 +62,7 @@
         <div class="loginform">
           <ul class="menubar">
             <li class="menufield">
-              <button class="menulink" id="update" type="submit">Uložiť</button>
+              <button class="menulink" id="registerbutton" type="submit">Uložiť</button>
             </li>
           </ul>
         </div>

@@ -21,6 +21,10 @@ h2 {
     text-transform: uppercase
 }
 
+button {
+    cursor: pointer;
+}
+
 .title {
     padding-left: 15px;
     font-size: 32pt;
@@ -82,13 +86,15 @@ h2 {
     font-size: 14pt;
     border-radius: 5px;
     border: 2px solid black;
-    cursor: pointer;
 }
 .space,
 .loginlink {
-    white-space: nowrap;
     margin-top: 15px;
     padding-bottom:  10px;
+}
+
+.loginlink {
+    white-space: nowrap;
 }
 
 #mainpage {
@@ -107,5 +113,5 @@ h2 {
 }
 
 #registerbutton {
-    cursor: not-allowed;
+    pointer-events: none;
 }

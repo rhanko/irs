@@ -7,14 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import program.model.User;
 import program.service.RoleService;
 import program.service.UserService;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Trieda
@@ -28,6 +29,14 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
+    private final Pattern patternUser = Pattern.compile("^[a-zA-Z0-9]+$");
+    private final Pattern patternEmail = Pattern.compile("^[a-zA-Z0-9@.]+$");
+
+    private final Pattern patternName = Pattern.compile("^[a-zA-Z]+$");
+
+
+
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         User user = new User();
@@ -36,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid User user, Model model, BindingResult result) {
+    public String registration(@ModelAttribute("user") User user, Model model, BindingResult result) {
         //vloženie role
         user.addRole(roleService.getRoleByName("User"));
 
@@ -47,6 +56,11 @@ public class UserController {
             result.rejectValue("username", null, "Toto užívateľské meno sa už používa.");
         }
 
+        //kontrola uzivatelskeho mena ci obsahuje len tie znaky co moze
+        if(!patternUser.matcher(user.getUsername()).matches()) {
+            result.rejectValue("username", null, "Môže obsahovať len znaky: a-z, A-Z, 0-9");
+        }
+
         User existingUserByMail = userService.findUserByEmail(user.getMail());
 
         //kontrola, či neexistuje mail
@@ -54,9 +68,24 @@ public class UserController {
             result.rejectValue("mail", null, "Tento e-mail sa už používa.");
         }
 
+        //kontrola emailu ci obsahuje len tie znaky co moze
+        if(!patternEmail.matcher(user.getMail()).matches()) {
+            result.rejectValue("mail", null, "Môže obsahovať len znaky: a-z, A-Z, 0-9, \"@\" a \".\"");
+        }
+
         //kontrola hesla
         if(user.getPassword().length() > 20 && user.getPassword().length() < 6) {
             result.rejectValue("password", null, "Musí obsahovať aspoň 6 znaky a najviac 20 znakov");
+        }
+
+        //kontrola mena
+        if(!user.getFirstname().isEmpty() && !patternName.matcher(user.getFirstname()).matches()) {
+            result.rejectValue("firstname", null, "Môže obsahovať len znaky: a-z a A-Z");
+        }
+
+        //kontrola priezviska
+        if(!user.getSurname().isEmpty() && !patternName.matcher(user.getSurname()).matches()) {
+            result.rejectValue("surname", null, "Môže obsahovať len znaky: a-z a A-Z");
         }
 
         if(result.hasErrors()) {
@@ -93,7 +122,7 @@ public class UserController {
         return "/account/profile";
     }
 
-    @GetMapping("/profile/edit")
+    @GetMapping("/profile-edit")
     public String profileEdit(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -105,8 +134,8 @@ public class UserController {
         return "/account/profileedit";
     }
 
-    @PostMapping("/profile/save")
-    public String profileSave(@Valid User user, Model model, BindingResult result) {
+    @PostMapping("/profile-edit/save")
+    public String profileSave(@ModelAttribute("user") User user, Model model, BindingResult result) {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -117,13 +146,28 @@ public class UserController {
             User findUserByEmail = userService.findUserByEmail(user.getMail());
 
             //kontrola mailu
-            if (findUserByEmail != null && user.getMail().equals(findUserByEmail.getMail()) && !(userLoggedIn.getMail().equals(findUserByEmail.getMail()))) {
+            if (user.getMail() == null && findUserByEmail != null && user.getMail().equals(findUserByEmail.getMail()) && !(userLoggedIn.getMail().equals(findUserByEmail.getMail()))) {
                 result.rejectValue("mail", null, "Tento e-mail už používa iná osoba.");
+            }
+
+            //kontrola emailu ci obsahuje len tie znaky co moze
+            if(!patternEmail.matcher(user.getMail()).matches()) {
+                result.rejectValue("mail", null, "Môže obsahovať len znaky: a-z, A-Z, 0-9, \"@\" a \".\"");
             }
 
             //kontrola hesla
             if(user.getPassword().length() > 20 && user.getPassword().length() < 6) {
                 result.rejectValue("password", null, "Musí obsahovať aspoň 6 znaky a najviac 20 znakov");
+            }
+
+            //kontrola mena
+            if(!user.getFirstname().isEmpty() && !patternName.matcher(user.getFirstname()).matches()) {
+                result.rejectValue("firstname", null, "Môže obsahovať len znaky: a-z a A-Z");
+            }
+
+            //kontrola priezviska
+            if(!user.getSurname().isEmpty() && !patternName.matcher(user.getSurname()).matches()) {
+                result.rejectValue("surname", null, "Môže obsahovať len znaky: a-z a A-Z");
             }
 
             if(result.hasErrors()) {
