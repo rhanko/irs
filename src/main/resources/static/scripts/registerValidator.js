@@ -93,7 +93,8 @@ function passwordValidate() {
 }
 
 function canSubmit() {
-    if (!usernameValidate() || !passwordValidate() || !emailValidate() || !firstnameValidate() || !lastnameValidate()) {
-        return false;
+    if (usernameValidate() && passwordValidate() && emailValidate() && firstnameValidate() && lastnameValidate())  {
+        return true;
     }
+    return false;
 }

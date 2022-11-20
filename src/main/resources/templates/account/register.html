@@ -25,7 +25,7 @@
         <h1 class="title" id="title"></h1>
         <hr class="headerbreak">
         <!--Text area for page-->
-        <form name="RegisterForm" method="post" role="form" th:action="@{/register/save}" th:object="${user}" onsubmit="canSubmit()">
+        <form name="RegisterForm" method="post" role="form" th:action="@{/register/save}" th:object="${user}" onsubmit="return canSubmit()">
             <div class="info">
                 <p>&nbsp</p>
             </div>

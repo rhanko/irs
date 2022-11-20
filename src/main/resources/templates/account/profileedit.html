@@ -10,7 +10,7 @@
   <!--Text area for page-->
   <div class="pagetext">
     <div class="subarea">
-      <form method="post" role="form" th:action="@{/profile-edit/save}" th:object="${user}" onsubmit="canSubmit()">
+      <form method="post" role="form" th:action="@{/profile-edit/save}" th:object="${user}" onsubmit="return canSubmit()">
         <div class="info">
           <p>&nbsp</p>
         </div>
@@ -26,14 +26,14 @@
 
         <div class="loginform">
           <label class="logintext" for="email">E-mail</label> <br>
-          <input class="logininput" id="email" name="email" type="email" th:value="*{mail}" th:field="*{mail}" required />
+          <input class="logininput" id="email" name="email" type="email" th:field="*{mail}" th:value="*{mail}" required/>
           <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
           <p class="error2" id="errorEmail"></p>
         </div>
 
         <div class="loginform">
           <label class="logintext" for="fname">Meno</label> <br>
-          <input class="logininput" id="fname" name="fname" type="text" th:value="*{firstname}" th:field="*{firstname}" />
+          <input class="logininput" id="fname" name="fname" type="text" th:field="*{firstname}" th:value="*{firstname}"/>
           <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
           <p class="error2" id="errorFirstname"></p>
 
@@ -41,7 +41,7 @@
 
         <div class="loginform">
           <label class="logintext" for="sname">Priezvisko</label> <br>
-          <input class="logininput" id="sname" name="sname" type="text" th:value="*{surname}" th:field="*{surname}" />
+          <input class="logininput" id="sname" name="sname" type="text" th:field="*{surname}" th:value="*{surname}" />
           <p class="error2" th:errors = "*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
           <p class="error2" id="errorSurname"></p>
 
