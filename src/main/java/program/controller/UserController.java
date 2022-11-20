@@ -109,12 +109,10 @@ public class UserController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userLoggedIn = userService.findUserByNickname(((UserDetails) principal).getUsername());
 
-        if (!(user.equals(userLoggedIn) || user.getUsername().equals(userLoggedIn.getUsername()))) {
-            //kontrola vstupov
-            emailCheck(user, userLoggedIn, result);
-            passwordCheck(user, result);
-            nameCheck(user, result);
-        }
+        //kontrola vstupov
+        emailCheck(user, userLoggedIn, result);
+        passwordCheck(user, result);
+        nameCheck(user, result);
 
         //vypisanie chyb
         if(result.hasErrors()) {
@@ -158,7 +156,7 @@ public class UserController {
     private void emailCheck(User user, User userLoggedIn, BindingResult result) {
         User findUserByEmail = userService.findUserByEmail(user.getMail());
         //kontrola mailu
-        if (user.getMail() == null && findUserByEmail != null && user.getMail().equals(findUserByEmail.getMail()) && !(userLoggedIn.getMail().equals(findUserByEmail.getMail()))) {
+        if(findUserByEmail != null && findUserByEmail.getMail() != null && !findUserByEmail.getMail().isEmpty() && !(userLoggedIn.getMail().equals(findUserByEmail.getMail()))) {
             result.rejectValue("mail", null, "Tento e-mail už používa iná osoba.");
         }
 
