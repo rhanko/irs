@@ -15,18 +15,17 @@
                     <p>&nbsp</p>
                 </div>
 
+                <div th:if="${param.edit_success}" class="info accepted">
+                    <p>Vaše údaje boli úspešne zmenené.</p>
+                </div>
+
                 <input type="hidden" id="id" th:value="*{id}" readonly="readonly">
 
                 <div class="loginform">
                     <label class="logintext" for="uname">Užívateľské meno</label> <br>
                     <input class="logininput" id="uname" type="text" th:value="*{username}" readonly="readonly"/>
                 </div>
-<!--
-                <div class="loginform">
-                    <label class="logintext" for="pw">Heslo</label> <br>
-                    <input class="logininput" id="pw" type="password" th:value="*{password}" readonly="readonly"/>
-                </div>
--->
+
                 <div class="loginform">
                     <label class="logintext" for="email">E-mail</label> <br>
                     <input class="logininput" id="email" type="email" th:value="*{mail}" readonly="readonly"/>

@@ -36,6 +36,7 @@ function firstnameValidate() {
         return false;
     } else {
         error.innerText = "";
+
         return true;
     }
 }
@@ -55,6 +56,7 @@ function lastnameValidate() {
         return false;
     } else {
         error.innerText = "";
+
         return true;
     }
 }
@@ -92,8 +94,15 @@ function passwordValidate() {
     }
 }
 
-function canSubmit() {
-    if (usernameValidate() && passwordValidate() && emailValidate() && firstnameValidate() && lastnameValidate())  {
+function canSubmitRegister() {
+    if(usernameValidate() && passwordValidate() && emailValidate() && firstnameValidate() && lastnameValidate()) {
+        return true;
+    }
+    return false;
+}
+
+function canSubmitEditProfile() {
+    if(emailValidate() && firstnameValidate() && lastnameValidate()) {
         return true;
     }
     return false;
