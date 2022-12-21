@@ -1,75 +1,85 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"></head>
-<body onload="pagename()">
-<header th:replace="fragments/header :: header"></header>
-<main>
-    <!--Header of page-->
-    <div th:replace="fragments/headofpage :: headerofpage"></div>
+<head th:replace="fragments/menu :: menu-head"></head>
 
+<body>
+<!--Header of page-->
+<header th:replace="fragments/menu :: menu"></header>
+<main>
     <!--Text area for page-->
     <div class="pagetext">
-        <div class="subarea">
-            <form method="get" role="form" th:object="${user}">
-                <div class="info">
-                    <p>&nbsp</p>
-                </div>
+        <form method="get" role="form" th:object="${user}">
+            <h1 class="title">Profil užívateľa <span th:text="*{firstname}"></span> <span th:text="*{surname}"></span> (<span th:text="*{username}"></span>)</h1>
 
-                <div th:if="${param.edit_success}" class="info accepted">
-                    <p>Vaše údaje boli úspešne zmenené.</p>
-                </div>
+            <div class="info">
+                <p>&nbsp</p>
+            </div>
 
-                <input type="hidden" id="id" th:value="*{id}" readonly="readonly">
+            <div th:if="${param.edit_success}" class="info accepted">
+                <p>Vaše údaje boli úspešne zmenené.</p>
+            </div>
 
-                <div class="loginform">
-                    <label class="logintext" for="uname">Užívateľské meno</label> <br>
-                    <input class="logininput" id="uname" type="text" th:value="*{username}" readonly="readonly"/>
-                </div>
+            <input type="hidden" id="id" th:value="*{id}" readonly="readonly">
 
-                <div class="loginform">
-                    <label class="logintext" for="email">E-mail</label> <br>
-                    <input class="logininput" id="email" type="email" th:value="*{mail}" readonly="readonly"/>
-                </div>
+            <div class="profileform">
+                <label class="profiletext" for="uname">Užívateľské meno</label>
+                <input class="profileinput" id="uname" type="text" th:value="*{username}" readonly="readonly"/>
+            </div>
 
-                <div class="loginform">
-                    <label class="logintext" for="fname">Meno</label> <br>
-                    <input class="logininput" id="fname" type="text" th:value="*{firstname}" readonly="readonly"/>
+            <div class="profileform">
+                <label class="profiletext" for="email">E-mail</label>
+                <input class="profileinput" id="email" type="email" th:value="*{mail}" readonly="readonly"/>
+            </div>
 
-                </div>
+            <div class="profileform">
+                <label class="profiletext" for="fname">Meno</label>
+                <input class="profileinput" id="fname" type="text" th:value="*{firstname}" readonly="readonly"/>
+            </div>
 
-                <div class="loginform">
-                    <label class="logintext" for="sname">Priezvisko</label> <br>
-                    <input class="logininput" id="sname" type="text" th:value="*{surname}" readonly="readonly"/>
-                </div>
+            <div class="profileform">
+                <label class="profiletext" for="sname">Priezvisko</label>
+                <input class="profileinput" id="sname" type="text" th:value="*{surname}" readonly="readonly"/>
+            </div>
 
-                <div class="loginform">
-                    <label class="logintext" for="university">Univerzita</label> <br>
-                    <input class="logininput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
-                    <input class="logininput" type="text"  th:if="*{faculty == null}" readonly="readonly"/>
-                </div>
+            <div class="profileform">
+                <label class="profiletext" for="university">Univerzita</label>
+                <input class="profileinput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
+                <input class="profileinput" id="university" type="text"  th:if="*{faculty == null}" readonly="readonly"/>
+            </div>
 
-                <div class="loginform">
-                    <label class="logintext" for="faculty">Fakulta</label> <br>
-                    <input class="logininput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" readonly="readonly"/>
-                    <input class="logininput" type="text" th:if="*{faculty == null}" readonly="readonly"/>
-                </div>
-            </form>
+            <div class="profileform">
+                <label class="profiletext" for="faculty">Fakulta</label>
+                <input class="profileinput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" readonly="readonly"/>
+                <input class="profileinput" id="faculty" type="text" th:if="*{faculty == null}" readonly="readonly"/>
+            </div>
+        </form>
 
-                <!--Register button and login link-->
-                <div class="loginform">
-                    <ul class="menubar">
-                        <li class="menufield">
-                            <a class="menulink" id="update" th:href="@{/profile-edit}">Upraviť</a>
-                        </li>
+            <div class="profilebuttons">
+                <a id="update2" th:href="@{/profile/edit}">
+                    <button class="profilebutton" th:href="@{/profile/edit}">Upraviť</button>
+                </a>
 
-                        <li class="menufield">
-                            <form method="get" th:action="@{/profile/delete}">
-                                <button class="menulink" id="delete" type="submit">Odstrániť</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                <form method="get" th:action="@{/profile/delete}">
+                    <button class="profilebutton" id="delete" type="submit">Odstrániť</button>
+                </form>
+            </div>
         </div>
+
+        <!--Register button and login link-->
+
+        <!--<div class="loginform">
+            <ul class="menubar">
+                <li class="menufield">
+                    <a class="menulink" id="update" th:href="@{/profile/edit}">Upraviť</a>
+                </li>
+
+                <li class="menufield">
+                    <form method="get" th:action="@{/profile/delete}">
+                        <button class="menulink" id="delete" type="submit">Odstrániť</button>
+                    </form>
+                </li>
+            </ul>
+        </div>-->
     </div>
 </main>
 </body>

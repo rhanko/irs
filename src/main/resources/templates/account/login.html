@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="refresh" content="300">
 
-  <title>Internáty</title>
+  <title>Internáty - Login</title>
 
   <link th:href="@{/styles/loginstyle.css}" rel="stylesheet" />
 
-
   <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
-
-  <script defer th:src="@{scripts/pagename.js}"></script>
-
 </head>
 
-<body onload="pagename()">
+<body>
   <!--Body of page-->
   <main>
     <!--Header of page-->
-    <h1 class="title" id="title"></h1>
+    <h1 class="title">Login</h1>
     <hr class="headerbreak">
       <!--Text area for page-->
     <form th:fragment="login" method="post" role="form" th:action="@{/login}">

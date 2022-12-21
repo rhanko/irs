@@ -183,6 +183,7 @@ article .articleauthor {
     margin-top: -18px;
 }
 
+
 footer {
     bottom: 0;
     width: 100%;
@@ -197,7 +198,7 @@ footer {
     display: grid;
     gap: 5px;
     padding: 5px;
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
     min-width: 50%;
 }
 
@@ -289,13 +290,13 @@ footer {
 
 @media only screen and (min-width: 700px) {
     .articles {
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
     }
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1099px) {
     .articles {
-        grid-template-columns: auto;
+        grid-template-columns: 100%;
     }
 
     .loginform .menubar {

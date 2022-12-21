@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head th:fragment="menu-head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+  <meta http-equiv="refresh" content="300">
+
+  <title>Internáty - Internátny rezervačný systém</title>
+
+  <link th:href="@{~/styles/style.css}" rel="stylesheet"/>
+
+  <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
+
+  <script th:src="@{~/scripts/burgermenu.js}"></script>
+  <script th:src="@{~/scripts/dropdown.js}"></script>
+</head>
+<body>
+<header th:fragment="menu">
+  <div class="header">
+    <form method="get" class="profile" th:object="${user}">
+      <a class="menulinkdropper" onclick="dropdown('drop2')">Radovan Hanko</a><!--TODO: Prerobit to tuto-->
+      <div class="menudrop" id="drop2">
+        <a th:href="@{/profile}" class="menulinkdrop">Profil</a>
+        <a th:href="@{/logout}" class="menulinkdrop">Odhlásiť sa</a>
+      </div>
+    </form>
+  </div>
+
+  <!--Burgermenu-->
+  <div class="iconburger" onclick="burgermenuFunction(this)">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
+
+  <!--Menubar-->
+  <div class="menubar">
+    <img class="headerimage" th:src="@{pictures/unizalogo.png}" alt="error" loading="lazy">
+    <a class="menulink" th:href="@{/home}">Oznamy</a>
+    <a class="menulink" th:href="@{/spotrebice}">Spotrebiče</a>
+    <a class="menulinkdropper" onclick="dropdown('drop1')">Rezervácia</a>
+    <div class="menudrop" id="drop1">
+      <a th:href="@{/reservation/room}" class="menulinkdrop">Rezervovať izbu</a>
+      <a th:href="@{/reservation/studyroom}" class="menulinkdrop">Rezervovať študovňu</a>
+    </div>
+  </div>
+</header>
+</body>
+</html>

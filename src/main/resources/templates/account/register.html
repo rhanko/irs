@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="300">
 
-    <title>Internáty</title>
+    <title>Internáty - Register</title>
 
     <link th:href="@{~/styles/loginstyle.css}" rel="stylesheet" />
 
 
     <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
 
-    <script defer th:src="@{~/scripts/pagename.js}"></script>
     <script defer th:src="@{~/scripts/registerValidator.js}"></script>
 
 
 </head>
 
-<body onload="pagename()">
+<body>
     <!--Body of page-->
     <main>
         <!--Header of page-->
-        <h1 class="title" id="title"></h1>
+        <h1 class="title">Register</h1>
         <hr class="headerbreak">
         <!--Text area for page-->
         <form name="RegisterForm" method="post" role="form" th:action="@{/register/save}" th:object="${user}" onsubmit="return canSubmitRegister()">

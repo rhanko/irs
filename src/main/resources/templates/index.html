@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="fragments/head :: head"></head>
-    <body onload="pagename() && articleMaxSize()">
+    <body onload="pagename()">
         <!--Header-->
         <header th:replace="fragments/header :: header"></header>
         <!--Body of page-->
@@ -13,94 +13,28 @@
                 <!--Articles-->
                 <div class="articles">
                     <article class="card" th:each="article : ${articles}">
-                        <h2 class="articletitle">
+                        <h2 class="articletitle" th:text="${article.getTitle()}">
                             Lorem Ipsum Lorem Ipsum
                         </h2>
 
-                        <div class="articledate">
-                            05.10.2022 10:55:00
+                        <div class="articledate" th:text="${article.getDate()}">
                         </div>
 
-                        <p class="articletext" id="articletext1">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-
-                        <div class="articlemore">
-                            <a  href="" >[čítaj ďalej]</a>
-                        </div>
-
-                        <div class="articleauthor">
-                            autor: Radovan hanko
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <h2 class="articletitle">
-                            Lorem Ipsum Lorem
-                        </h2>
-
-                        <div class="articledate">
-                            04.09.2022 09:46:32
-                        </div>
-
-                        <p class="articletext">
+                        <p class="articletext" th:text="${article.getText().length() > 150} ? ${#strings.substring(article.getText(), 0, 150)} : ${article.getText()}">
+                            ALorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
 
                         <div class="articlemore">
-                            <a  href="" >[čítaj ďalej]</a>
+                            <a  th:href="@{'/article/'+${article.getId()}}"  >[čítaj ďalej]</a>
                         </div>
 
                         <div class="articleauthor">
-                            autor: Radovan Hanko
+                            autor:
+                            <p class="articleauthorname" th:text="${article.getUser().getFirstname()}"></p>
+                            <p class="articleauthorname" th:text="${article.getUser().getSurname()}"></p>
                         </div>
                     </article>
-
-                    <article class="card">
-                        <h2 class="articletitle">
-                            Lorem Ipsum
-                        </h2>
-
-                        <div class="articledate">
-                            01.09.2022 17:07:23
-                        </div>
-
-                        <p class="articletext">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-
-                        <div class="articlemore">
-                            <a href="">[čítaj ďalej]</a>
-                        </div>
-
-                        <div class="articleauthor">
-                            autor: Radovan Hanko
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <h2 class="articletitle">
-                            Lorem
-                        </h2>
-
-                        <div class="articledate">
-                            30.08.2022 14:22:57
-                        </div>
-
-                        <p class="articletext">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-
-                        <div class="articlemore">
-                            <a href="">[čítaj ďalej]</a>
-                        </div>
-
-                        <div class="articleauthor">
-                            autor: Radovan Hanko
-                        </div>
-                    </article>
-
                 </div>
             </section>
         </main>

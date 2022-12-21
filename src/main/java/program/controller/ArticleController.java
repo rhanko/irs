@@ -1,47 +1,32 @@
 package program.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import program.model.Article;
+import program.service.ArticleService;
+import program.service.CategoryService;
+import program.service.UserService;
+
+import java.util.List;
 
 @Controller
 public class ArticleController {
-/*
+
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CategoryService categoryService;
+
     @Autowired
     private UserService userService;
 
-    @GetMapping("/index.html")
-    private String read(Model model) {
-        List<Article> articles = articleService.getAll();
-        model.addAllAttributes(articles);
-        return "article";
+    @GetMapping("/home")
+    public String articles(Model model) {
+        List<Article> articles = articleService.findAllArticles();
+        model.addAttribute("articles", articles);
+        return "index.html";
     }
-
-    @GetMapping("/article/showed")
-    private List<Article> getAllShowed() {
-        return articleService.getAllShowed();
-    }
-
-    @GetMapping("/article/{id}")
-    private Article getByID(@PathVariable("id") int id) {
-        return articleService.getByID(id);
-    }
-
-    @DeleteMapping("/article/{id}")
-    private void deleteByID(@PathVariable("id") int id) {
-        articleService.delete(id);
-    }
-
-    @PostMapping("/articles")
-    private int save(@RequestBody Article article) {
-        articleService.createOrUpdate(article);
-        return article.getId();
-    }
-
-    @PutMapping("/articles")
-    private Article update(@RequestBody Article article) {
-        articleService.createOrUpdate(article);
-        return article;
-    }
-*/
 }

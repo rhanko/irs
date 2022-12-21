@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.menubar .menulink:hover,
+.menubar .menulink:active,
+.menubar .menulinkdropper:hover,
+.menubar .menulinkdropper:active,
+* {
+    background-color: #000000;
+}
+
+form, div, main, label, p, h1, span, a, button,
+.header,
+.headerimage,
+.menulinkdropper,
+.menulink,
+.profile,
+.menubar {
+    background-color: #191C24;
+    color: #6C7293;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 23px 0;
+}
+
+.headerimage {
+    position: fixed;
+    top: 0;
+    float: left;
+    width: 200px;
+    padding-left: 15px;
+}
+
+.profile {
+    float: right;
+    font-size: 30px;
+    padding-top: 1%;
+    padding-right: 2%;
+}
+
+.menubar {
+    position: fixed;
+    width: 255px;
+    padding-top: 93px;
+    height: 100%;
+}
+
+.menulinkdropper, a,
+.profilebutton {
+    cursor: pointer;
+}
+
+.menubar .menulinkdropper,
+.menubar .menulink {
+    display: list-item;
+    list-style-position: inside;
+    list-style-type: none;
+    font-size: 23px;
+    padding: 12px 20px 12px 35px;
+    margin-right: 30px;
+}
+
+.menubar .menulinkdropper:hover,
+.menubar .menulinkdropper:active,
+.menubar .menulink:hover,
+.menubar .menulink:active {
+    color: #EB1616;
+    border-left: 2px #EB1616 solid;
+    border-radius: 0 30px 30px 0;
+}
+
+.menudrop {
+    display: none;
+}
+
+.menulink,
+.profilebutton,
+a {
+    text-decoration: none;
+}
+
+main {
+    position: absolute;
+    top: 108px;
+    left: 265px;
+    right: 0;
+    bottom: 0;
+}
+
+.title {
+    padding-left: 90px;
+}
+
+.pagetext {
+    padding: 20px 0 0 20px;
+}
+
+main, .pagetext {
+    border-radius: 15px 0 0 0;
+}
+
+input {
+    color: #6C7293;
+}
+
+.profileform {
+    margin: 20px 0 5px;
+}
+
+.profiletext {
+    font-size: 30px;
+    margin-left: 15%;
+}
+
+.profileinput {
+    height: 35px;
+    font-size: 30px;
+    float: right;
+    margin-right: 30%;
+}
+
+.profilebuttons {
+    float: right;
+    margin: 15px 32% 15px;
+}
+
+.profilebutton {
+    font-size: 20px;
+    border-radius: 30px;
+    border: #000000 solid 2px;
+    padding: 10px;
+    height: 50px;
+    width: 150px;
+    text-align-all: center;
+    margin: 10px 0;
+}
+
+.profilebutton:hover,
+.profilebutton a:hover {
+    background-color: #000000;
+    color: #EB1616;
+    border-color: #EB1616;
+}
+
+.profile .menulinkdropper:hover,
+.profile .menulinkdropper:active {
+    color: #EB1616;
+}
+
+@media only screen and (max-width: 1400px) {
+    .profiletext {
+        margin-right: 50%;
+    }
+    .profileinput {
+        float: unset;
+        margin-left: 20%;
+    }
+
+    .profilebuttons {
+        margin-right: 50%;
+    }
+}

@@ -25,24 +25,17 @@ public class PagesController {
         return "/contacts.html";
     }
 
-    @RequestMapping("/profile")
-    private String profile() {
-        return "/account/profile.html";
-    }
-
     @RequestMapping("/lost_password")
     private String lostPassword() {
         return "/account/lostpassword.html";
-    }
-
-    @RequestMapping("/login")
-    private String login() {
-        return "/account/login.html";
     }
 
     @RequestMapping("/users")
     public String users() {
         return "/account/users";
     }
+
+    @RequestMapping("/menu")
+    public String menu() {return "/fragments/menu";}
 
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Článok
@@ -36,8 +36,12 @@ public class Article {
     /**
      * Dátum vytvorenia
      */
-    @Column(name = "date", columnDefinition = "Date", nullable = false)
-    private Date date;
+    @Column(name = "date", columnDefinition = "Datetime", nullable = false)
+    private LocalDateTime date;
+
+    public String getDate() {
+        return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute() + ":" + date.getSecond();
+    }
 
     /**
      * Zobrazenie
