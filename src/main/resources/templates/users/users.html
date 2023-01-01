@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"></head>
+<head th:replace="fragments/menu :: menu-head"></head>
 
-<body onload="pagename()">
-<!--Header-->
-<header th:replace="fragments/header :: header"></header>
-
-<!--Body of page-->
+<body>
+<!--Header of page-->
+<header th:replace="fragments/menu :: menu"></header>
 <main>
-    <!--Header of page-->
-    <div th:replace="fragments/headofpage :: headerofpage"></div>
-
     <!--Text area for page-->
     <div class="pagetext">
-        <div class="subarea">
-            <h2 class="subtitle">&nbsp</h2>
+        <form method="get" role="form" th:object="${users}">
+            <h1 class="title">Užívatelia</h1>
 
+            <!--Errors-->
+            <div th:if="${param.user_successfully_deleted}" class="info accepted">
+                <p>Užívateľ bol úspešne odstránený.</p>
+            </div>
+            <div th:if="${param.user_unsuccessfully_deleted}" class="info error">
+                <p>Užívateľ nebolo možné odstrániť. Skontrolujte, či máte dostatočné oprávnenie.</p>
+            </div>
+            <div th:if="${param.username_not_exist}" class="info error">
+                <p>Užívateľ neexistuje.</p>
+            </div>
 
-        </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>ID:</th>
+                        <th>USERNAME:</th>
+                        <th>E-MAIL:</th>
+                        <th>ROLE:</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.mail}"></td>
+                        <td th:text="${user.role.get(0).name}"></td>
+                        <td>
+                            <a class="button" th:href="@{'/user/' + ${user.username}}">Zobraziť</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
 </main>
-
-<footer th:replace="fragments/footer :: footer">
-</footer>
 </body>
 </html>

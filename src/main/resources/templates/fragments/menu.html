@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="sk" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="menu-head">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
@@ -13,13 +13,38 @@
 
   <script th:src="@{~/scripts/burgermenu.js}"></script>
   <script th:src="@{~/scripts/dropdown.js}"></script>
+  <script th:src="@{~/scripts/registerValidator.js}"></script>
+  <script th:src="@{~/scripts/tinymce/tinymce.min.js}"></script>
+  <script>
+    tinymce.init({
+      selector: "#articletextarea",
+      skin: "oxide-dark",
+      content_css: "dark",
+      resize: false,
+      height: 500,
+      plugins: [
+              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+              'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
+              'table', 'help', 'wordcount'
+      ],
+      toolbar: 'undo redo | blocks | bold italic backcolor | ' +
+              'alignleft aligncenter aligntright alignjustify | ' +
+              'bullist numlist outdent indent | ' +
+              'removeformat | help',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size: 16px;}'
+    });
+  </script>
+
 </head>
 <body>
 <header th:fragment="menu">
   <div class="header">
-    <form method="get" class="profile" th:object="${user}">
-      <a class="menulinkdropper" onclick="dropdown('drop2')">Radovan Hanko</a><!--TODO: Prerobit to tuto-->
-      <div class="menudrop" id="drop2">
+    <form method="get" class="profile" th:object="${userlogged}">
+      <a class="menulinkdropper" onclick="dropdown('drop2')">
+        <span th:if="*{firstname != '' && surname != ''}" class="profilename" th:text="*{firstname + ' ' + surname}"></span>
+        <span th:if="*{firstname == '' || surname == ''}" class="profilename">Account</span>
+      </a>
+      <div class="menudropprofile" id="drop2">
         <a th:href="@{/profile}" class="menulinkdrop">Profil</a>
         <a th:href="@{/logout}" class="menulinkdrop">Odhlásiť sa</a>
       </div>
@@ -35,7 +60,7 @@
 
   <!--Menubar-->
   <div class="menubar">
-    <img class="headerimage" th:src="@{pictures/unizalogo.png}" alt="error" loading="lazy">
+    <img class="headerimage" th:src="@{/pictures/unizalogo.png}" alt="error" loading="lazy">
     <a class="menulink" th:href="@{/home}">Oznamy</a>
     <a class="menulink" th:href="@{/spotrebice}">Spotrebiče</a>
     <a class="menulinkdropper" onclick="dropdown('drop1')">Rezervácia</a>
@@ -43,6 +68,9 @@
       <a th:href="@{/reservation/room}" class="menulinkdrop">Rezervovať izbu</a>
       <a th:href="@{/reservation/studyroom}" class="menulinkdrop">Rezervovať študovňu</a>
     </div>
+    <a class="menulink" th:href="@{/users}" sec:authorize="hasAuthority('Admin')">Užívatelia</a>
+    <a class="menulink" th:href="@{/faculties}" sec:authorize="hasAuthority('Admin')">Fakulty</a>
+    <a class="menulink" th:href="@{/profile}" sec:authorize="hasAuthority('Admin')">ESTE NIECO SEM</a>
   </div>
 </header>
 </body>

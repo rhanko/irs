@@ -70,6 +70,4 @@ public class Article {
      */
     @Column(name = "text", columnDefinition = "MediumText", nullable = false)
     private String text;
-
-    //TODO doplniť niečo pre obrazok :)
 }

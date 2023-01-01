@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/menu :: menu-head"></head>
 
+<body>
+<!--Header of page-->
+<header th:replace="fragments/menu :: menu"></header>
+<main>
+    <!--Text area for page-->
+    <div class="pagetext">
+        <form name="ArticleForm" role="form" method="post" class="articlearea" th:object="${article}" th:action="@{/article/save}">
+            <h1 class="title">Článok <span th:text="*{title}"></span></h1>
+
+            <input type="hidden" id="id" th:value="*{id}" readonly>
+            <input type="hidden" id="author" th:value="*{user}" readonly>
+
+            <div class="articleform">
+                <label class="articletext">Názov článku: </label>
+                <input class="articleinput" id="articletitle" type="text" th:value="*{text}"  />
+            </div>
+
+            <div class="articleform right">
+                <label class="articletext">Zobraziť článok: </label>
+                <input class="articleinput" id="articleisshown" type="checkbox" checked>
+            </div>
+
+            <div class="articleform">
+                <label class="articletext">Kategória: </label>
+                <select class="articleinput" name="category">
+
+                </select>
+            </div>
+
+            <textarea id="articletextarea"></textarea>
+
+        </form>
+    </div>
+</main>
 </body>
 </html>

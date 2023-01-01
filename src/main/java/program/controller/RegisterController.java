@@ -16,7 +16,8 @@ import program.service.UserService;
 import java.util.regex.Pattern;
 
 /**
- * Trieda
+ * Controller na registrovanie, prihlásenie, zobrazenie profilu, edit profilu a vymazanie účtu.
+ * Slúži na prácu so svojím učtom, respektíve jeho vytvorenie a prihlásenie sa do neho.
  */
 @Controller
 public class RegisterController {
@@ -68,6 +69,9 @@ public class RegisterController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
+        Object principalloggeduser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userlogged = userService.findUserByNickname(((UserDetails) principalloggeduser).getUsername());
+        model.addAttribute("userlogged", userlogged);
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -79,6 +83,10 @@ public class RegisterController {
 
     @GetMapping("/profile/edit")
     public String profileEdit(Model model) {
+        Object principalloggeduser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userlogged = userService.findUserByNickname(((UserDetails) principalloggeduser).getUsername());
+        model.addAttribute("userlogged", userlogged);
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User user = userService.findUserByNickname(((UserDetails) principal).getUsername());

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PagesController {
 
 
-    @RequestMapping("/home")
+    @RequestMapping({"/home", "/"})
     private String home() {
         return "/index.html";
     }
@@ -27,15 +27,6 @@ public class PagesController {
 
     @RequestMapping("/lost_password")
     private String lostPassword() {
-        return "/account/lostpassword.html";
+        return "/account/lostpassword";
     }
-
-    @RequestMapping("/users")
-    public String users() {
-        return "/account/users";
-    }
-
-    @RequestMapping("/menu")
-    public String menu() {return "/fragments/menu";}
-
 }

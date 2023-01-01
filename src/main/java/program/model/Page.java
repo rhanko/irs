@@ -33,7 +33,6 @@ public class Page {
     /**
      * Obsah stránky
      */
-    //TODO: mozno spravit doc
     @Column(name = "text", columnDefinition = "MediumText")
     private String text;
 

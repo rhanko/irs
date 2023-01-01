@@ -9,14 +9,14 @@
     <!--Text area for page-->
     <div class="pagetext">
         <form method="get" role="form" th:object="${user}">
-            <h1 class="title">Profil užívateľa <span th:text="*{firstname}"></span> <span th:text="*{surname}"></span> (<span th:text="*{username}"></span>)</h1>
-
-            <div class="info">
-                <p>&nbsp</p>
-            </div>
+            <h1 class="title">Profil užívateľa <span th:text="*{firstname + ' ' + surname + ' (' + username + ')'}"></span></h1>
 
             <div th:if="${param.edit_success}" class="info accepted">
                 <p>Vaše údaje boli úspešne zmenené.</p>
+            </div>
+
+            <div th:if="${param.login_succes}" class="info accepted">
+                <p>Boli ste úspešne prihlásený.</p>
             </div>
 
             <input type="hidden" id="id" th:value="*{id}" readonly="readonly">
@@ -54,7 +54,8 @@
             </div>
         </form>
 
-            <div class="profilebuttons">
+        <!--Register button and login link-->
+        <div class="profilebuttons">
                 <a id="update2" th:href="@{/profile/edit}">
                     <button class="profilebutton" th:href="@{/profile/edit}">Upraviť</button>
                 </a>
@@ -64,22 +65,6 @@
                 </form>
             </div>
         </div>
-
-        <!--Register button and login link-->
-
-        <!--<div class="loginform">
-            <ul class="menubar">
-                <li class="menufield">
-                    <a class="menulink" id="update" th:href="@{/profile/edit}">Upraviť</a>
-                </li>
-
-                <li class="menufield">
-                    <form method="get" th:action="@{/profile/delete}">
-                        <button class="menulink" id="delete" type="submit">Odstrániť</button>
-                    </form>
-                </li>
-            </ul>
-        </div>-->
     </div>
 </main>
 </body>

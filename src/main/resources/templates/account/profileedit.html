@@ -1,76 +1,63 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/head :: head"></head>
-  <head>
-    <script th:src="@{~/scripts/registerValidator.js}"></script>
-  </head>
+<head th:replace="fragments/menu :: menu-head"></head>
 
-<body onload="pagename()">
-<header th:replace="fragments/header :: header"></header>
+<body>
+<header th:replace="fragments/menu :: menu"></header>
 <main>
-  <!--Header of page-->
-  <div th:replace="fragments/headofpage :: headerofpage"></div>
   <!--Text area for page-->
   <div class="pagetext">
-    <div class="subarea">
-      <form name="RegisterForm" method="post" role="form" th:action="@{/profile-edit/save}" th:object="${user}" onsubmit="return canSubmitEditProfile()">
-        <div class="info">
-          <p>&nbsp</p>
-        </div>
+      <form name="RegisterForm" method="post" role="form" th:action="@{/profile/edit/save}" th:object="${user}" onsubmit="return canSubmitEditProfile()">
+        <h1 class="title">Profil užívateľa <span th:text="*{firstname}"></span> <span th:text="*{surname}"></span> (<span th:text="*{username}"></span>)</h1>
 
         <input type="hidden" id="id" th:value="*{id}" th:field="*{id}" readonly>
-        <input class="logininput" id="pw" name="password" type="text"  th:field="*{password}" hidden>
+        <input id="pw" name="password" type="text"  th:field="*{password}" hidden>
 
-        <div class="loginform">
-          <label class="logintext" for="uname">Užívateľské meno</label> <br>
-          <input class="logininput" id="uname" name="uname" type="text"  th:field="*{username}" readonly/>
+        <div class="profileform">
+          <label class="profiletext" for="uname">Užívateľské meno</label>
+          <input class="profileinput" id="uname" name="uname" type="text"  th:field="*{username}" readonly/>
           <p class="error2" id="errorUsername"></p>
         </div>
 
-        <div class="loginform">
-          <label class="logintext" for="email">E-mail</label> <br>
-          <input class="logininput" id="email" name="email" type="email" th:field="*{mail}" required onchange="emailValidate()"/>
+        <div class="profileform">
+          <label class="profiletext" for="email">E-mail</label>
+          <input class="profileinput" id="email" name="email" type="email" th:field="*{mail}" required onchange="emailValidate()"/>
           <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
           <p class="error2" id="errorEmail"></p>
         </div>
 
-        <div class="loginform">
-          <label class="logintext" for="fname">Meno</label> <br>
-          <input class="logininput" id="fname" name="fname" type="text" th:field="*{firstname}" onchange="firstnameValidate()"/>
+        <div class="profileform">
+          <label class="profiletext" for="fname">Meno</label>
+          <input class="profileinput" id="fname" name="fname" type="text" th:field="*{firstname}" onchange="firstnameValidate()"/>
           <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
           <p class="error2" id="errorFirstname"></p>
 
         </div>
 
-        <div class="loginform">
-          <label class="logintext" for="sname">Priezvisko</label> <br>
-          <input class="logininput" id="sname" name="sname" type="text" th:field="*{surname}" onchange="lastnameValidate()"/>
+        <div class="profileform">
+          <label class="profiletext" for="sname">Priezvisko</label>
+          <input class="profileinput" id="sname" name="sname" type="text" th:field="*{surname}" onchange="lastnameValidate()"/>
           <p class="error2" th:errors = "*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
           <p class="error2" id="errorSurname"></p>
 
         </div>
 
-        <div class="loginform">
-          <label class="logintext" for="university">Univerzita</label> <br>
-          <input class="logininput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" disabled/>
-          <input class="logininput" type="text"  th:if="*{faculty == null}" disabled/>
+        <div class="profileform">
+          <label class="profiletext" for="university">Univerzita</label>
+          <input class="profileinput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" disabled/>
+          <input class="profileinput" type="text"  th:if="*{faculty == null}" disabled/>
         </div>
 
-        <div class="loginform">
-          <label class="logintext" for="faculty">Fakulta</label> <br>
-          <input class="logininput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" disabled/>
-          <input class="logininput" type="text" th:if="*{faculty == null}" disabled/>
+        <div class="profileform">
+          <label class="profiletext" for="faculty">Fakulta</label>
+          <input class="profileinput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" disabled/>
+          <input class="profileinput" type="text" th:if="*{faculty == null}" disabled/>
         </div>
 
-        <div class="loginform">
-          <ul class="menubar">
-            <li class="menufield">
-              <button class="menulink" id="registerbutton" type="submit">Uložiť</button>
-            </li>
-          </ul>
+        <div class="profilebuttons">
+            <button class="profilebutton" id="registerbutton" type="submit">Upraviť</button>
         </div>
       </form>
-    </div>
   </div>
 </main>
 </body>

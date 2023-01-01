@@ -11,7 +11,7 @@
     background-color: #000000;
 }
 
-form, div, main, label, p, h1, span, a, button,
+form, div, main, label, p, h1, span, a, button, tr, td, th,
 .header,
 .headerimage,
 .menulinkdropper,
@@ -75,7 +75,8 @@ form, div, main, label, p, h1, span, a, button,
     border-radius: 0 30px 30px 0;
 }
 
-.menudrop {
+.menudrop,
+.menudropprofile {
     display: none;
 }
 
@@ -98,7 +99,7 @@ main {
 }
 
 .pagetext {
-    padding: 20px 0 0 20px;
+    padding: 20px 20px 0 20px;
 }
 
 main, .pagetext {
@@ -122,12 +123,13 @@ input {
     height: 35px;
     font-size: 30px;
     float: right;
-    margin-right: 30%;
+    margin-right: 25%;
+    width: 400px;
 }
 
 .profilebuttons {
     float: right;
-    margin: 15px 32% 15px;
+    margin: 15px 27% 15px;
 }
 
 .profilebutton {
@@ -141,6 +143,10 @@ input {
     margin: 10px 0;
 }
 
+.profileinput:read-only {
+    cursor: not-allowed;
+}
+
 .profilebutton:hover,
 .profilebutton a:hover {
     background-color: #000000;
@@ -148,9 +154,66 @@ input {
     border-color: #EB1616;
 }
 
-.profile .menulinkdropper:hover,
-.profile .menulinkdropper:active {
+.profilename:hover,
+.profilename:active,
+.button:hover,
+.button:active {
     color: #EB1616;
+}
+
+.info {
+    margin: 5px 10px 0 10px;
+    border: #1c234a 3px solid;
+    color: #1c234a;
+    border-radius: 15px;
+    padding: 10px 10px 10px 20px;
+    text-align: center;
+}
+
+p {
+    font: 17px bold;
+}
+
+.error,
+.error p {
+    border-color: #500000;
+    color: #500000;
+    background-color: darkred;
+}
+
+.warning,
+.warning p {
+    border-color: #B9A52E;
+    color: #B9A52E;
+    background-color: darkorange;
+}
+
+.accepted,
+.accepted p {
+    border-color: #003000;
+    color: #003000;
+    background-color: darkgreen;
+}
+svg {
+    background-color: #222f3e;
+}
+
+.tox-promotion {
+    display: none !important;
+}
+
+.right {
+    float: right;
+}
+
+th, td {
+    font-size: 25px;
+    padding: 10px 5px 13px;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 1400px) {

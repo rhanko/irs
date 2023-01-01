@@ -181,6 +181,7 @@ article {
 
 article .articleauthor {
     margin-top: -18px;
+    display: inline;
 }
 
 

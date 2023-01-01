@@ -24,9 +24,18 @@ public class SpringSecurity {
                 .authorizeRequests()
                 //nie je prihlasený
                 .antMatchers("/lostpassword").anonymous()
+                .antMatchers("/register").anonymous()
+                .antMatchers("/login").anonymous()
 
                 //prihlaseny
                 .antMatchers("/profile").fullyAuthenticated()
+                .antMatchers("/profile/edit").fullyAuthenticated()
+
+                //admin
+                .antMatchers("/users").hasAuthority("Admin")
+                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/article/add").hasRole("Admin")
+                .antMatchers("/article/edit").hasRole("Admin")
 
                 .and()
                 //kde je login stranka a kam presmerovat po prihlaseni
@@ -34,7 +43,7 @@ public class SpringSecurity {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/profile")
+                                .defaultSuccessUrl("/profile?login_succes")
                                 .permitAll())
                 //kde je logout stranka
                 .logout(
@@ -43,7 +52,7 @@ public class SpringSecurity {
                                 .clearAuthentication(true)
                                 .permitAll()
                 )
-                .rememberMe().tokenValiditySeconds(3600)
+                .rememberMe().tokenValiditySeconds(7200)
                 .and()
                 .sessionManagement().maximumSessions(1).expiredUrl("/login?expired");
         return http.build();

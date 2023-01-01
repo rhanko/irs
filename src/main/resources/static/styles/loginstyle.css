@@ -76,6 +76,11 @@ button {
 
 .logininput {
     font-size: clamp(8pt, calc(10pt + 1vw), 17pt);
+    width: 276px;
+}
+
+.loginselect {
+    width: 280px;
 }
 
 .loginbutton {
