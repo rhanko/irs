@@ -1,5 +1,6 @@
 package program.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +36,7 @@ public class University {
     /**
      * Zoznam fakúlt danej univerzity
      */
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "university", cascade = CascadeType.REMOVE)
     private Set<Faculty> faculties = new HashSet<>();
 }

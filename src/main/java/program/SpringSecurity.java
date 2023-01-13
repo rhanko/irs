@@ -32,10 +32,10 @@ public class SpringSecurity {
                 .antMatchers("/profile/edit").fullyAuthenticated()
 
                 //admin
-                .antMatchers("/users").hasAuthority("Admin")
+                .antMatchers("/users").hasAnyAuthority("Admin", "Mod")
                 .antMatchers("/user/**").hasAuthority("Admin")
-                .antMatchers("/article/add").hasRole("Admin")
-                .antMatchers("/article/edit").hasRole("Admin")
+                .antMatchers("/articles").hasAnyAuthority("Admin", "Mod")
+                .antMatchers("/article/**").hasAnyAuthority("Admin", "Mod")
 
                 .and()
                 //kde je login stranka a kam presmerovat po prihlaseni

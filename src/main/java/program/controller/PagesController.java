@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PagesController {
 
-
-    @RequestMapping({"/home", "/"})
-    private String home() {
-        return "/index.html";
-    }
-
     @RequestMapping("/charges")
     private String charges() {
         return "/charges.html";

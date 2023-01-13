@@ -1,7 +1,10 @@
 package program.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import program.model.Faculty;
 
-public interface FacultyRepository extends CrudRepository<Faculty, Integer> {
+import java.util.List;
+
+public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
+    List<Faculty> getFacultiesByUniversityId(int id);
 }

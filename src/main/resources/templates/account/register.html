@@ -13,7 +13,8 @@
     <link rel="icon" href="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/344/external-dormitory-city-buildings-smashingstocks-flat-smashing-stocks.png">
 
     <script defer th:src="@{~/scripts/registerValidator.js}"></script>
-
+    <script type="text/javascript" src="webjars/jquery/3.2.0/jquery.min.js"></script>
+    <script th:src="@{~/scripts/universities.js}"></script>
 
 </head>
 
@@ -71,15 +72,13 @@
 
             <div class="loginform">
                 <label class="logintext">Univerzita*</label> <br>
-                <select class="logininput loginselect">Vyberte si:
-                    <option value="">Vyberte si: </option>
+                <select class="logininput loginselect" id="uniinput">Vyberte si:
                 </select>
             </div>
 
             <div class="loginform">
                 <label class="logintext">Fakulta*</label> <br>
-                <select class="logininput loginselect">Vyberte si:
-                    <option value="">Vyberte si: </option>
+                <select class="logininput loginselect" id="facinput">Vyberte si:
                 </select>
             </div>
 

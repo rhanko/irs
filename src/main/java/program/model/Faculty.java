@@ -35,14 +35,14 @@ public class Faculty {
     /**
      * Univerzita/ škola pod ktorú fakulta patrí
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "university_id", nullable = false)
     private University university;
 
     /**
      * Zoznam užívateľov navštevujúcich fakultu
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<User> users = new HashSet<>();
 
 }
