@@ -31,11 +31,14 @@ public class SpringSecurity {
                 .antMatchers("/profile").fullyAuthenticated()
                 .antMatchers("/profile/edit").fullyAuthenticated()
 
-                //admin
+                //moderator
                 .antMatchers("/users").hasAnyAuthority("Admin", "Mod")
-                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/user/**").hasAnyAuthority("Admin", "Mod")
                 .antMatchers("/articles").hasAnyAuthority("Admin", "Mod")
                 .antMatchers("/article/**").hasAnyAuthority("Admin", "Mod")
+
+                //admin
+                .antMatchers("/settings").hasAuthority("Admin")
 
                 .and()
                 //kde je login stranka a kam presmerovat po prihlaseni

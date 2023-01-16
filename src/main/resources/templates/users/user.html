@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<html lang="sk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/menu :: menu-head"></head>
 
 <body>
 <!--Header of page-->
 <header th:replace="fragments/menu :: menu"></header>
-<main>
+<main id="main">
     <!--Text area for page-->
     <div class="pagetext">
         <form method="get" role="form" th:object="${user}">
@@ -40,13 +40,11 @@
             <div class="profileform">
                 <label class="profiletext" for="university">Univerzita</label>
                 <input class="profileinput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
-                <input class="profileinput" id="university" type="text"  th:if="*{faculty == null}" readonly="readonly"/>
             </div>
 
             <div class="profileform">
                 <label class="profiletext" for="faculty">Fakulta</label>
                 <input class="profileinput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" readonly="readonly"/>
-                <input class="profileinput" id="faculty" type="text" th:if="*{faculty == null}" readonly="readonly"/>
             </div>
 
             <div class="profileform">
@@ -56,7 +54,7 @@
         </form>
 
         <!--Edit and Delete buttons-->
-        <div class="profilebuttons">
+        <div class="profilebuttons" sec:authorize="hasAuthority('Admin')">
             <a id="update2" th:href="@{'/user/' + ${username} + '/edit'}">
                 <button class="profilebutton" th:href="@{'/user/' + ${username} + '/edit'}">Upraviť</button>
             </a>

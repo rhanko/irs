@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="sk" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/menu :: menu-head"></head>
+<head th:replace="fragments/head :: head"></head>
+<body onload="pagename()">
+<!--Header-->
+<header th:replace="fragments/header :: header"></header>
 
-<body>
-<!--Header of page-->
-<header th:replace="fragments/menu :: menu"></header>
+<!--Body of page-->
 <main>
+    <!--Header of page-->
+    <div th:replace="fragments/headofpage :: headerofpage"></div>
+
     <!--Text area for page-->
     <div class="pagetext">
-        <form name="ArticleForm" role="form" method="post" class="articlearea" th:object="${article}" th:action="@{/article/save}">
-            <h1 class="title">Článok <span th:text="*{title}"></span></h1>
-
-            <input type="hidden" id="id" th:value="*{id}" readonly>
-            <input type="hidden" id="author" th:value="*{user}" readonly>
-
-            <div class="articleform">
-                <label class="articletext">Názov článku: </label>
-                <input class="articleinput" id="articletitle" type="text" th:value="*{text}"  />
+        <div class="subarea">
+            <div class="articledate" th:text="${article.getDate()}">
             </div>
 
-            <div class="articleform right">
-                <label class="articletext">Zobraziť článok: </label>
-                <input class="articleinput" id="articleisshown" type="checkbox" checked>
+            <p class="articletext" th:text="${article.getText()}">
+            </p>
+
+            <div class="articlemore">
+                <a  th:href="@{'/article/edit/'+${article.getTitle()}}"  >[Upraviť]</a>
             </div>
 
-            <div class="articleform">
-                <label class="articletext">Kategória: </label>
-                <select class="articleinput" name="category">
-
-                </select>
+            <div class="articlemore">
+                <a  th:href="@{'/article/delete/'+${article.getTitle()}}"  >[Vymazať]</a>
             </div>
 
-            <textarea id="articletextarea"></textarea>
-
-        </form>
+            <div class="articleauthor">
+                autor:
+                <p class="articleauthorname" th:text="${article.getUser().getFirstname()}"></p>
+                <p class="articleauthorname" th:text="${article.getUser().getSurname()}"></p>
+            </div>
+        </div>
     </div>
 </main>
 </body>

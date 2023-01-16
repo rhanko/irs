@@ -1,5 +1,6 @@
 package program.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +37,7 @@ public class Role {
     /**
      * Zoznam užívateľov danej role
      */
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     private Set<User> users = new HashSet<>();
 }

@@ -4,4 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import program.model.University;
 
 public interface UniversityRepository extends JpaRepository<University, Integer> {
+
+    University findUniversityByNameUniversity(String name);
 }

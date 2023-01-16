@@ -4,18 +4,20 @@ $(document).ready(function() {
         url: "http://localhost:8080/universities",
         datatype: "JSON",
         success: function (universities) {
-            $('#uniinput').append($('<option>', {
+            let uni = $('#uniinput');
+
+            uni.append($('<option>', {
                 value: 0,
                 text: 'Vyberte si:'
             }));
 
             for (let i in universities) {
-                $('#uniinput').append($('<option>', {
+                uni.append($('<option>', {
                     value: universities[i].id,
                     text: universities[i].nameUniversity
                 }));
             }
-        },
+        }
     });
 });
 
@@ -26,7 +28,9 @@ $(document).ready(function() {
             url: "http://localhost:8080/faculties/university/" + $("#uniinput").val(),
             datatype: "JSON",
             success: function (faculties) {
-                $('#facinput')
+                let fac = $('#facinput');
+
+                fac
                     .find('option')
                     .remove()
                     .end()
@@ -36,12 +40,28 @@ $(document).ready(function() {
                 }));
 
                 for (let i in faculties) {
-                    $('#facinput').append($('<option>', {
+                    fac.append($('<option>', {
                         value: faculties[i].id,
                         text: faculties[i].name
                     }));
                 }
             },
         });
+    });
+});
+
+$(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/roles",
+        datatype: "JSON",
+        success: function (roles) {
+            for (let i in roles) {
+                $('#roleinput').append($('<option>', {
+                    value: roles[i].id,
+                    text: roles[i].name
+                }));
+            }
+        }
     });
 });

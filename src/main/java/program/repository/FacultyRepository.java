@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
     List<Faculty> getFacultiesByUniversityId(int id);
+
+    Faculty findFacultyByName(String name);
+
+    Faculty getFacultyById(int id);
 }

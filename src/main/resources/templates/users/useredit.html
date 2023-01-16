@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/menu :: menu-head"></head>
+
+<body>
+<!--Header of page-->
+<header th:replace="fragments/menu :: menu"></header>
+<main id="main">
+    <!--Text area for page-->
+    <div class="pagetext">
+        <form method="post" role="form" th:object="${user}" th:action="@{'/user/' + *{username} + '/save' }" onsubmit="return canSubmitEditProfile()">
+            <h1 class="title">Profil užívateľa <span th:text="*{firstname + ' ' + surname + ' (' + username + ')'}"></span></h1>
+
+            <input type="hidden" id="id" th:value="*{id}" th:field="*{id}" readonly>
+            <input id="pw" name="password" type="text"  th:field="*{password}" hidden>
+
+            <div class="profileform">
+                <label class="profiletext" for="uname">Užívateľské meno</label>
+                <input class="profileinput" id="uname" type="text" th:value="*{username}"/>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="email">E-mail</label>
+                <input class="profileinput" id="email" name="email" type="email" th:field="*{mail}" required onchange="emailValidate()"/>
+                <p class="error2" th:errors = "*{mail}" th:if="${#fields.hasErrors('mail')}"></p>
+                <p class="error2" id="errorEmail"></p>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="fname">Meno</label>
+                <input class="profileinput" id="fname" name="fname" type="text" th:field="*{firstname}" onchange="firstnameValidate()"/>
+                <p class="error2" th:errors="*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
+                <p class="error2" id="errorFirstname"></p>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="sname">Priezvisko</label>
+                <input class="profileinput" id="sname" name="sname" type="text" th:field="*{surname}" onchange="lastnameValidate()"/>
+                <p class="error2" th:errors="*{surname}" th:if="${#fields.hasErrors('surname')}"></p>
+                <p class="error2" id="errorSurname"></p>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="uniinput">Univerzita</label>
+                <select class="profileinput" id="uniinput" th:text="*{faculty.university.nameUniversity}" th:value="*{faculty.university.id}">Vyberte si:</select>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="facinput">Fakulta</label>
+                <select class="profileinput" id="facinput" th:field="*{faculty}" th:text="*{faculty.name}" th:value="*{faculty.id}">Vyberte si:</select>
+            </div>
+
+            <div class="profileform">
+                <label class="profiletext" for="roleinput">Rola</label>
+                <select class="profileinput" id="roleinput" th:field="*{role}" th:text="*{role.get(0).name}" th:value="*{role.get(0).id}">Vyberte si:</select>
+            </div>
+
+            <div class="profilebuttons">
+                <button class="profilebutton" id="registerbutton" type="submit">Uložiť</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

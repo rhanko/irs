@@ -5,4 +5,11 @@ import program.model.Article;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
+    Article findArticleById(int id);
+
+    boolean existsArticleById(int id);
+
+    Article findArticleByTitle(String name);
+
+    boolean existsArticleByTitle(String name);
 }

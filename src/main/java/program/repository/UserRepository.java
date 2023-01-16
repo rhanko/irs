@@ -2,7 +2,10 @@ package program.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import program.model.Faculty;
 import program.model.User;
+
+import java.util.List;
 
 /**
  * Interface pre manipuláciu s údajmi v tabuľke "User"
@@ -27,4 +30,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserById(int id);
 
     boolean existsUserByUsername(String username);
+
+    List<User> findAllByFaculty(Faculty faculty);
 }

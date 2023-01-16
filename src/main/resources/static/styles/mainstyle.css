@@ -172,6 +172,7 @@ article {
 .articleauthor,
 .articlemore a {
     color: gray;
+    background: unset;
 }
 
 .articletext {
@@ -208,6 +209,10 @@ footer {
     grid-template-columns: auto auto;
 }
 
+.articleauthorname {
+    display: inline;
+}
+
 @media only screen and (max-width: 599px) {
     .menu {
         position: relative;
@@ -217,6 +222,7 @@ footer {
     .iconburger {
         margin-left: 6px;
         width: 35px;
+        float: left;
         display: inline-block;
         cursor: pointer;
     }

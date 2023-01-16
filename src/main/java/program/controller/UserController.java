@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import program.model.User;
 import program.service.UserService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -47,8 +46,27 @@ public class UserController {
         return "users/user";
     }
 
-    @PostMapping("/user/{username}/edit")
-    public String edituser(@Valid User user, Model model, BindingResult result, @PathVariable("username") String username) {
+    @GetMapping("/user/{username}/edit")
+    public String edituser(Model model, @PathVariable("username") String username) {
+        if(!userService.existUserByUsername(username)) {
+            return "redirect:/users?username_not_exist";
+        }
+
+        Object principalloggeduser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userlogged = userService.findUserByNickname(((UserDetails) principalloggeduser).getUsername());
+        model.addAttribute("userlogged", userlogged);
+
+        if(!userService.existUserByUsername(username)) {
+            return "redirect:/users?username_not_exist";
+        }
+
+        User user = userService.findUserByNickname(username);
+        model.addAttribute("user", user);
+        return "users/useredit";
+    }
+
+    @PostMapping("/user/{username}/save")
+    public String saveuser(User user, Model model, BindingResult result, @PathVariable("username") String username) {
         Object principalloggeduser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userlogged = userService.findUserByNickname(((UserDetails) principalloggeduser).getUsername());
         model.addAttribute("userlogged", userlogged);
@@ -59,11 +77,11 @@ public class UserController {
 
         if(result.hasErrors()) {
             model.addAttribute("user", user);
-            return "/account/profileedit";
+            return "users/useredit";
         }
 
         userService.saveUserEdited(user);
-        return "users/user";
+        return "redirect:/users?user_successfully_edited";
     }
 
     @GetMapping("user/{username}/delete")

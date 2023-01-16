@@ -5,7 +5,7 @@
 <body>
 <!--Header of page-->
 <header th:replace="fragments/menu :: menu"></header>
-<main>
+<main id="main">
     <!--Text area for page-->
     <div class="pagetext">
         <form method="get" role="form" th:object="${users}">
@@ -18,30 +18,35 @@
             <div th:if="${param.user_unsuccessfully_deleted}" class="info error">
                 <p>Užívateľ nebolo možné odstrániť. Skontrolujte, či máte dostatočné oprávnenie.</p>
             </div>
+            <div th:if="${param.user_successfully_edited}" class="info accepted">
+                <p>Užívateľ bol úspešne upravený.</p>
+            </div>
             <div th:if="${param.username_not_exist}" class="info error">
                 <p>Užívateľ neexistuje.</p>
             </div>
 
-            <table>
-                <tbody>
-                    <tr>
-                        <th>ID:</th>
-                        <th>USERNAME:</th>
-                        <th>E-MAIL:</th>
-                        <th>ROLE:</th>
-                        <th></th>
-                    </tr>
-                    <tr th:each="user: ${users}">
-                        <td th:text="${user.id}"></td>
-                        <td th:text="${user.username}"></td>
-                        <td th:text="${user.mail}"></td>
-                        <td th:text="${user.role.get(0).name}"></td>
-                        <td>
-                            <a class="button" th:href="@{'/user/' + ${user.username}}">Zobraziť</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>ID:</th>
+                            <th>USERNAME:</th>
+                            <th>E-MAIL:</th>
+                            <th>ROLE:</th>
+                            <th></th>
+                        </tr>
+                        <tr th:each="user: ${users}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.username}"></td>
+                            <td th:text="${user.mail}"></td>
+                            <td th:text="${user.role.get(0).name}"></td>
+                            <td>
+                                <a class="button" th:href="@{'/user/' + ${user.username}}">Zobraziť</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </form>
     </div>
 </main>

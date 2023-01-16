@@ -3,10 +3,10 @@
     padding: 0;
 }
 
-.menubar .menulink:hover,
-.menubar .menulink:active,
-.menubar .menulinkdropper:hover,
-.menubar .menulinkdropper:active,
+.menubars .menulink:hover,
+.menubars .menulink:active,
+.menubars .menulinkdropper:hover,
+.menubars .menulinkdropper:active,
 * {
     background-color: #000000;
 }
@@ -17,7 +17,7 @@ form, div, main, label, p, h1, span, a, button, tr, td, th,
 .menulinkdropper,
 .menulink,
 .profile,
-.menubar {
+.menubars {
     background-color: #191C24;
     color: #6C7293;
 }
@@ -44,7 +44,7 @@ form, div, main, label, p, h1, span, a, button, tr, td, th,
     padding-right: 2%;
 }
 
-.menubar {
+.menubars {
     position: fixed;
     width: 255px;
     padding-top: 93px;
@@ -56,8 +56,8 @@ form, div, main, label, p, h1, span, a, button, tr, td, th,
     cursor: pointer;
 }
 
-.menubar .menulinkdropper,
-.menubar .menulink {
+.menubars .menulinkdropper,
+.menubars .menulink {
     display: list-item;
     list-style-position: inside;
     list-style-type: none;
@@ -66,10 +66,10 @@ form, div, main, label, p, h1, span, a, button, tr, td, th,
     margin-right: 30px;
 }
 
-.menubar .menulinkdropper:hover,
-.menubar .menulinkdropper:active,
-.menubar .menulink:hover,
-.menubar .menulink:active {
+.menubars .menulinkdropper:hover,
+.menubars .menulinkdropper:active,
+.menubars .menulink:hover,
+.menubars .menulink:active {
     color: #EB1616;
     border-left: 2px #EB1616 solid;
     border-radius: 0 30px 30px 0;
@@ -98,15 +98,20 @@ main {
     padding-left: 90px;
 }
 
+.iconburger {
+    display: none;
+}
+
 .pagetext {
     padding: 20px 20px 0 20px;
+    overflow-y: auto;
 }
 
 main, .pagetext {
     border-radius: 15px 0 0 0;
 }
 
-input {
+input, select, option {
     color: #6C7293;
 }
 
@@ -137,7 +142,8 @@ input {
     border-radius: 30px;
     border: #000000 solid 2px;
     padding: 10px;
-    height: 50px;
+    max-height: 70px;
+    min-height: 50px;
     width: 150px;
     text-align-all: center;
     margin: 10px 0;
@@ -156,8 +162,8 @@ input {
 
 .profilename:hover,
 .profilename:active,
-.button:hover,
-.button:active {
+.buttontable:hover,
+.buttontable:active {
     color: #EB1616;
 }
 
@@ -209,11 +215,26 @@ svg {
 th, td {
     font-size: 25px;
     padding: 10px 5px 13px;
+    height: 50px;
+    min-width: 100px;
 }
 
 table {
     width: 100%;
+    min-width: 800px;
     margin-top: 10px;
+}
+
+.buttontable {
+    font-size: 15px;
+    height: 35px;
+    float: left;
+    margin: 0 5px;
+}
+
+.table {
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -227,5 +248,82 @@ table {
 
     .profilebuttons {
         margin-right: 50%;
+    }
+}
+
+@media only screen and (max-width: 1006px) {
+    .headerimage {
+        display: none;
+    }
+
+    .menubars {
+        width: 100%;
+        position: unset;
+        height: unset;
+    }
+
+    main {
+        border-radius: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin-top: 95px;
+    }
+
+    .title {
+        padding-left: 0;
+    }
+
+    .profiletext {
+        margin: 0 20px 0 0;
+    }
+
+    .profileinput {
+        float: right;
+        margin: 0 20px 0 0;
+    }
+
+    .iconburger {
+        margin-left: 6px;
+        width: 35px;
+        display: block;
+        cursor: pointer;
+        float: left;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: #6C7293;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    .change .bar1 {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    .change .bar3 {
+        transform: translate(0, -11px) rotate(45deg);
+    }
+
+    #menubarlinks {
+        display: none;
+        transition: 3s ease;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .profiletext {
+        margin: 0 150px 0 0;
+    }
+    
+    .profileinput {
+        margin-right: 150px;
+        float: unset;
     }
 }

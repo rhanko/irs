@@ -14,4 +14,16 @@ public class UniversityService {
     public List<University> findAllUniversities() {
         return uniRepository.findAll();
     }
+
+    public University findUniversityByName(String name) {
+        return uniRepository.findUniversityByNameUniversity(name);
+    }
+
+    public void saveUniversity(University university) {
+        uniRepository.save(university);
+    }
+
+    public void deleteUniversity(University university) {
+        uniRepository.delete(university);
+    }
 }

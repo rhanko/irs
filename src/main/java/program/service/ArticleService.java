@@ -20,4 +20,23 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
+    public Article getArticleById(int id) {
+        return articleRepository.findArticleById(id);
+    }
+
+    public boolean existArticleById(int id) {
+        return articleRepository.existsArticleById(id);
+    }
+
+    public void deleteArticleById(int id) {
+        articleRepository.deleteById(id);
+    }
+
+    public boolean existArticleByTitle(String name) {
+        return articleRepository.existsArticleByTitle(name);
+    }
+
+    public Article getArticleByTitle(String name) {
+        return articleRepository.findArticleByTitle(name);
+    }
 }

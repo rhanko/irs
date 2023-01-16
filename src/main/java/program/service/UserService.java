@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import program.model.Faculty;
 import program.model.User;
 import program.repository.UserRepository;
 
@@ -72,7 +73,11 @@ public class UserService implements UserDetailsService {
         editedUser.setMail(user.getMail());
         editedUser.setFirstname(user.getFirstname());
         editedUser.setSurname(user.getSurname());
-
+        editedUser.setFaculty(user.getFaculty());
+        if (!user.getRole().isEmpty()) {
+            editedUser.removeRole(editedUser.getRole().get(0));
+            editedUser.addRole(user.getRole().get(0));
+        }
         //ak sa heslá zhodujú tak heslo sa needitovalo
         if (user.getPassword() != null) {
             if (!(user.getPassword().equals(editedUser.getPassword()))) {
@@ -103,6 +108,10 @@ public class UserService implements UserDetailsService {
 
     public boolean existUserByUsername(String username) {
         return userRepository.existsUserByUsername(username);
+    }
+
+    public List<User> getUserByFaculty(Faculty faculty) {
+        return userRepository.findAllByFaculty(faculty);
     }
 
 }

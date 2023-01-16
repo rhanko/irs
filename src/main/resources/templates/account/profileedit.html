@@ -4,7 +4,7 @@
 
 <body>
 <header th:replace="fragments/menu :: menu"></header>
-<main>
+<main id="main">
   <!--Text area for page-->
   <div class="pagetext">
       <form name="RegisterForm" method="post" role="form" th:action="@{/profile/edit/save}" th:object="${user}" onsubmit="return canSubmitEditProfile()">
@@ -31,7 +31,6 @@
           <input class="profileinput" id="fname" name="fname" type="text" th:field="*{firstname}" onchange="firstnameValidate()"/>
           <p class="error2" th:errors = "*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
           <p class="error2" id="errorFirstname"></p>
-
         </div>
 
         <div class="profileform">
@@ -55,7 +54,7 @@
         </div>
 
         <div class="profilebuttons">
-            <button class="profilebutton" id="registerbutton" type="submit">Upraviť</button>
+            <button class="profilebutton" id="registerbutton" type="submit">Uložiť</button>
         </div>
       </form>
   </div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/menu :: menu-head"></head>
+
+<body>
+<!--Header of page-->
+<header th:replace="fragments/menu :: menu"></header>
+<main id="main">
+    <div class="pagetext">
+        <div>
+            <form method="get" role="form" th:object="${universities}">
+                <div class="table">
+                    <table>
+                        <tbody class="tablessettings">
+                        <tr>
+                            <th class="id">ID:</th>
+                            <th class="namesettings">Názov:</th>
+                            <th class="buttonstable"></th>
+                        </tr>
+                        <tr th:each="university: ${universities}">
+                            <td class="id" th:text="${university.id}"></td>
+                            <td class="namesettings" th:text="${university.nameUniversity}"></td>
+                            <td class="buttonstable">
+                                <button class="profilebutton buttontable" th:id="university + ${university.id}" onclick="editNameUniversity(this.id)" type="button">Zmeniť názov</button>
+                                <form method="get" th:action="@{'/university/' + ${university.nameUniversity} + '/delete'}">
+                                    <button class="profilebutton buttontable" type="submit">Odstrániť</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="profilebutton" onclick="newUniversity()" type="button">Pridať univerzitu</button>
+            </form>
+        </div>
+
+        <div>
+            <form method="get" role="form" th:object="${faculties}">
+                <div class="table">
+                    <table>
+                        <tbody class="tablessettings">
+                        <tr>
+                            <th class="id">ID:</th>
+                            <th class="namesettings">Názov:</th>
+                            <th class="university">Univerzita:</th>
+                            <th class="buttonstable"></th>
+                        </tr>
+                        <tr th:each="faculty: ${faculties}">
+                            <td class="id" th:text="${faculty.id}"></td>
+                            <td class="namesettings" th:text="${faculty.name}"></td>
+                            <td th:text="${faculty.university.nameUniversity}"></td>
+                            <td class="buttonstable">
+                                <button class="profilebutton buttontable" th:id="faculty + ${faculty.id}" onclick="editNameFaculty(this.id)" type="button">Zmeniť názov</button>
+                                <form method="get" th:action="@{'/faculty/' + ${faculty.name} + '/delete'}">
+                                    <button class="profilebutton buttontable" type="submit">Odstrániť</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="profilebutton" onclick="newFaculty()" type="button">Pridať fakultu</button>
+            </form>
+        </div>
+
+        <!--<form method="get" role="form" th:object="${categories}">
+
+        </form>-->
+    </div>
+</main>
+</body>
+</html>

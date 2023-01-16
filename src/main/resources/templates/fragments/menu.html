@@ -13,32 +13,25 @@
 
   <script th:src="@{~/scripts/burgermenu.js}"></script>
   <script th:src="@{~/scripts/dropdown.js}"></script>
-  <script th:src="@{~/scripts/registerValidator.js}"></script>
   <script th:src="@{~/scripts/tinymce/tinymce.min.js}"></script>
-  <script>
-    tinymce.init({
-      selector: "#articletextarea",
-      skin: "oxide-dark",
-      content_css: "dark",
-      resize: false,
-      height: 500,
-      plugins: [
-              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
-              'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
-              'table', 'help', 'wordcount'
-      ],
-      toolbar: 'undo redo | blocks | bold italic backcolor | ' +
-              'alignleft aligncenter aligntright alignjustify | ' +
-              'bullist numlist outdent indent | ' +
-              'removeformat | help',
-      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size: 16px;}'
-    });
-  </script>
+  <script th:src="@{~/scripts/tinymceInit.js}"></script>
+
+  <script defer th:src="@{~/scripts/registerValidator.js}"></script>
+  <script type="text/javascript" src="http://localhost:8080/webjars/jquery/3.2.0/jquery.min.js"></script>
+  <script th:src="@{~/scripts/universities.js}"></script>
+  <script th:src="@{~/scripts/editor.js}"></script>
 
 </head>
 <body>
 <header th:fragment="menu">
   <div class="header">
+    <!--Burgermenu-->
+    <div class="iconburger" onclick="burgermenuFunction2(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+
     <form method="get" class="profile" th:object="${userlogged}">
       <a class="menulinkdropper" onclick="dropdown('drop2')">
         <span th:if="*{firstname != '' && surname != ''}" class="profilename" th:text="*{firstname + ' ' + surname}"></span>
@@ -51,26 +44,21 @@
     </form>
   </div>
 
-  <!--Burgermenu-->
-  <div class="iconburger" onclick="burgermenuFunction(this)">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-  </div>
-
   <!--Menubar-->
-  <div class="menubar">
-    <img class="headerimage" th:src="@{/pictures/unizalogo.png}" alt="error" loading="lazy">
-    <a class="menulink" th:href="@{/home}">Oznamy</a>
-    <a class="menulink" th:href="@{/spotrebice}">Spotrebiče</a>
-    <a class="menulinkdropper" onclick="dropdown('drop1')">Rezervácia</a>
-    <div class="menudrop" id="drop1">
-      <a th:href="@{/reservation/room}" class="menulinkdrop">Rezervovať izbu</a>
-      <a th:href="@{/reservation/studyroom}" class="menulinkdrop">Rezervovať študovňu</a>
-    </div>
-    <a class="menulink" th:href="@{/users}" sec:authorize="hasAuthority('Admin')">Užívatelia</a>
-    <a class="menulink" th:href="@{/faculties}" sec:authorize="hasAuthority('Admin')">Fakulty</a>
-    <a class="menulink" th:href="@{/profile}" sec:authorize="hasAuthority('Admin')">ESTE NIECO SEM</a>
+  <div id="menubarlinks">
+    <div class="menubars">
+      <img class="headerimage" th:src="@{/pictures/unizalogo.png}" alt="error" loading="lazy">
+      <a class="menulink" th:href="@{/home}">Oznamy</a>
+      <a class="menulink" th:href="@{/spotrebice}" style="display: none">Spotrebiče</a>
+      <a class="menulinkdropper" onclick="dropdown('drop1')" style="display: none">Rezervácia</a>
+      <div class="menudrop" id="drop1">
+        <a th:href="@{/reservation/room}" class="menulinkdrop">Rezervovať izbu</a>
+        <a th:href="@{/reservation/studyroom}" class="menulinkdrop">Rezervovať študovňu</a>
+      </div>
+      <a class="menulink" th:href="@{/users}" sec:authorize="hasAnyAuthority('Admin', 'Mod')">Užívatelia</a>
+      <a class="menulink" th:href="@{/articles}" sec:authorize="hasAnyAuthority('Admin', 'Mod')">Články</a>
+      <a class="menulink" th:href="@{/settings}" sec:authorize="hasAuthority('Admin')">Nastavenia</a>
+  </div>
   </div>
 </header>
 </body>

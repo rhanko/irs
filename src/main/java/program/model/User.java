@@ -87,7 +87,7 @@ public class User {
      * Fakulta, ktorú navštevuje užívateľ (ak je študent)
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "faculty_id")//, nullable = false)
     private Faculty faculty;
 
     /**

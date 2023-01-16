@@ -5,7 +5,7 @@
 <body>
 <!--Header of page-->
 <header th:replace="fragments/menu :: menu"></header>
-<main>
+<main id="main">
     <!--Text area for page-->
     <div class="pagetext">
         <form method="get" role="form" th:object="${user}">
@@ -43,14 +43,12 @@
 
             <div class="profileform">
                 <label class="profiletext" for="university">Univerzita</label>
-                <input class="profileinput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
-                <input class="profileinput" id="university" type="text"  th:if="*{faculty == null}" readonly="readonly"/>
+                <input class="profileinput" id="university" type="text" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
             </div>
 
             <div class="profileform">
                 <label class="profiletext" for="faculty">Fakulta</label>
-                <input class="profileinput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" readonly="readonly"/>
-                <input class="profileinput" id="faculty" type="text" th:if="*{faculty == null}" readonly="readonly"/>
+                <input class="profileinput" id="faculty" type="text" th:value="*{faculty.name}" readonly="readonly"/>
             </div>
         </form>
 
