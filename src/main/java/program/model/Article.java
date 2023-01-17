@@ -36,9 +36,8 @@ public class Article {
     /**
      * Dátum vytvorenia
      */
-    @Column(name = "date", columnDefinition = "Datetime", nullable = false)
+    @Column(name = "date", columnDefinition = "Datetime", nullable = true)
     private LocalDateTime date;
-
     public String getDate() {
         return date.getDayOfMonth() + "." + date.getMonthValue() + "." + date.getYear() + " " + date.getHour() + ":" + date.getMinute() + ":" + date.getSecond();
     }

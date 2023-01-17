@@ -16,6 +16,7 @@ import program.service.ArticleService;
 import program.service.CategoryService;
 import program.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,9 @@ public class ArticleController {
         Article article = new Article();
         article.setUser(user);
 
+        article.setCategory(categoryService.getAllCategories().get(0));
+        article.setDate(LocalDateTime.now());
+
         model.addAttribute("article", article);
         return "articles/articleedit";
     }
@@ -68,7 +72,8 @@ public class ArticleController {
         model.addAttribute("userlogged", user);
 
         Article article = articleService.getArticleByTitle(name);
-
+        article.setCategory(categoryService.getAllCategories().get(0));
+        article.setDate(LocalDateTime.now());
         model.addAttribute("article", article);
         return "articles/articleedit";
     }

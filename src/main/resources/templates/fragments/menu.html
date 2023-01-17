@@ -56,7 +56,7 @@
         <a th:href="@{/reservation/studyroom}" class="menulinkdrop">Rezervovať študovňu</a>
       </div>
       <a class="menulink" th:href="@{/users}" sec:authorize="hasAnyAuthority('Admin', 'Mod')">Užívatelia</a>
-      <a class="menulink" th:href="@{/articles}" sec:authorize="hasAnyAuthority('Admin', 'Mod')">Články</a>
+      <a class="menulink" th:href="@{/article/add}" sec:authorize="hasAnyAuthority('Admin')">Nový článok</a>
       <a class="menulink" th:href="@{/settings}" sec:authorize="hasAuthority('Admin')">Nastavenia</a>
   </div>
   </div>

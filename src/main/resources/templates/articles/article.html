@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<html lang="sk" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/head :: head"></head>
 <body onload="pagename()">
 <!--Header-->
@@ -19,12 +19,12 @@
             <p class="articletext" th:text="${article.getText()}">
             </p>
 
-            <div class="articlemore">
-                <a  th:href="@{'/article/edit/'+${article.getTitle()}}"  >[Upraviť]</a>
+            <div sec:authorize="hasAuthority('Admin')" class="articlemore">
+                <a th:href="@{'/article/edit/'+${article.getTitle()}}"  >[Upraviť]</a>
             </div>
 
-            <div class="articlemore">
-                <a  th:href="@{'/article/delete/'+${article.getTitle()}}"  >[Vymazať]</a>
+            <div class="articlemore" sec:authorize="hasAuthority('Admin')">
+                <a th:href="@{'/article/delete/'+${article.getTitle()}}"  >[Vymazať]</a>
             </div>
 
             <div class="articleauthor">

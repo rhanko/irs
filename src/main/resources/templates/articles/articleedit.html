@@ -16,21 +16,21 @@
 
             <div class="articleform">
                 <label class="articletext">Názov článku: </label>
-                <input class="articleinput" id="articletitle" type="text" th:value="*{title}"  />
+                <input class="articleinput" id="articletitle" type="text" th:field="*{title}"  />
             </div>
 
             <div class="articleform right">
                 <label class="articletext">Zobraziť článok: </label>
-                <input class="articleinput" id="articleisshown" type="checkbox" th:value="*{shown}" checked>
+                <input class="articleinput" id="articleisshown" type="checkbox" th:field="*{shown}" checked>
             </div>
 
             <div class="articleform">
                 <label class="articletext">Kategória: </label>
-                <select class="articleinput" name="category">
+                <select class="articleinput" name="category" th:field="*{category}">
                 </select>
             </div>
 
-            <textarea id="articletextarea" th:value="*{text}"></textarea>
+            <textarea id="articletextarea" th:field="*{text}"></textarea>
 
             <div class="profilebuttons">
                 <a id="update2" th:href="@{'/article/save'}">

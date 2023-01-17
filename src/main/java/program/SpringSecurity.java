@@ -33,11 +33,15 @@ public class SpringSecurity {
                 //moderator
                 .antMatchers("/users").hasAnyAuthority("Admin", "Mod")
                 .antMatchers("/user/**").hasAnyAuthority("Admin", "Mod")
-                .antMatchers("/articles").hasAnyAuthority("Admin", "Mod")
-                .antMatchers("/article/**").hasAnyAuthority("Admin", "Mod")
+                //.antMatchers("/articles").hasAnyAuthority("Admin", "Mod")
+
 
                 //admin
                 .antMatchers("/settings").hasAuthority("Admin")
+                .antMatchers("/article/edit/**").hasAuthority("Admin")
+                .antMatchers("/article/add").hasAuthority("Admin")
+                .antMatchers("/article/save").hasAuthority("Admin")
+                .antMatchers("/article/delete/**").hasAuthority("Admin")
 
                 .and()
                 //kde je login stranka a kam presmerovat po prihlaseni
