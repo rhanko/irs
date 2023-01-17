@@ -42,7 +42,7 @@
 
             <div class="profileform">
                 <label class="profiletext" for="uniinput">Univerzita</label>
-                <select class="profileinput" id="uniinput" th:text="*{faculty.university.nameUniversity}" th:value="*{faculty.university.id}">Vyberte si:</select>
+                <select class="profileinput" id="uniinput" th:text="*{faculty.university.nameUniversity}" th:field="*{faculty.university.id}">Vyberte si:</select>
             </div>
 
             <div class="profileform">

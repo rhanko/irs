@@ -43,12 +43,14 @@
 
             <div class="profileform">
                 <label class="profiletext" for="university">Univerzita</label>
-                <input class="profileinput" id="university" type="text" th:value="*{faculty.university.nameUniversity}" readonly="readonly"/>
+                <input class="profileinput" id="university" type="text"  th:if="*{faculty != null}" th:value="*{faculty.university.nameUniversity}" disabled/>
+                <input class="profileinput" type="text"  th:if="*{faculty == null}" disabled/>
             </div>
 
             <div class="profileform">
                 <label class="profiletext" for="faculty">Fakulta</label>
-                <input class="profileinput" id="faculty" type="text" th:value="*{faculty.name}" readonly="readonly"/>
+                <input class="profileinput" id="faculty" type="text" th:if="*{faculty != null}" th:value="*{faculty.name}" disabled/>
+                <input class="profileinput" type="text" th:if="*{faculty == null}" disabled/>
             </div>
         </form>
 

@@ -25,7 +25,6 @@ public class SpringSecurity {
                 //nie je prihlasený
                 .antMatchers("/lostpassword").anonymous()
                 .antMatchers("/register").anonymous()
-                .antMatchers("/login").anonymous()
 
                 //prihlaseny
                 .antMatchers("/profile").fullyAuthenticated()
